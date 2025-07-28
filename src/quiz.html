@@ -111,7 +111,7 @@
         K1: { V2: ["A3"], A2: ["V3"] },
       };
 
-      // Mind Pattern results for each Step 1 + Step 2 + Step 3 combination
+      // Mind Pattern results for each Step 1 + Step 2 combination
       const mindPatternMap = {
         A1: { K2: "AKV", V2: "AVK" },
         V1: { A2: "VAK", K2: "VKA" },
@@ -155,7 +155,39 @@
                 <p>I tend to be critical of how things are done.</p>
                 `,
         },
+        K2: {
+          pattern: "<h4>KINESTHETIC</h4>",
+          description: `
+                <p>I know what I am feeling in my body with my eyes open.</p>
+                <p>I have lots of pent-up energy right below the surface.</p>
+                `,
+        },
+        A2: {
+          pattern: "<h4>AUDITORY</h4>",
+          description: `
+                <p>To make a decision, I prefer to talk both sides through with someone else.</p>
+                <p>I frequently use metaphors when I speak and prefer to share the entire story of an experience.</p>
+                `,
+        },
+        V2: {
+          pattern: "<h4>VISUAL</h4>",
+          description: `
+                <p>I can easily see three-dimensional images in my mind with my eyes open and view these from various angles - above, behind and sideways.</p>
+                <p>I prefer to look at the person I am talking to and then look around.</p>
+                `,
+        },
       };
+
+      function addStepDescription(div, opt) {
+        if (mindPatternStepDescriptions[opt]) {
+          const descDiv = document.createElement("div");
+          descDiv.innerHTML =
+            mindPatternStepDescriptions[opt].pattern +
+            mindPatternStepDescriptions[opt].description;
+          descDiv.className = "details";
+          div.appendChild(descDiv);
+        }
+      }
 
       function renderStep1Options() {
         const step1OptionsDiv = document.getElementById("step-1-options");
@@ -171,14 +203,7 @@
             if (selectedOption1 === null) chooseOption1(opt);
           };
           step1OptionsDiv.appendChild(div);
-          if (mindPatternStepDescriptions[opt]) {
-            const descDiv = document.createElement("div");
-            descDiv.innerHTML =
-              mindPatternStepDescriptions[opt].pattern +
-              mindPatternStepDescriptions[opt].description;
-            descDiv.className = "details";
-            div.appendChild(descDiv);
-          }
+          addStepDescription(div, opt);
         });
       }
 
@@ -198,6 +223,7 @@
             if (selectedOption2 === null) chooseOption2(opt);
           };
           step2OptionsDiv.appendChild(div);
+          addStepDescription(div, opt);
         });
       }
 
@@ -254,22 +280,8 @@
         // Only show result after step 3
       }
 
-      // Step 3 is static, so auto-select the only option when Step 3 is shown
-      function chooseOption3(option) {
-        // No-op: Step 3 is static
-      }
-
       function showResult() {
         if (!selectedOption1 || !selectedOption2) return;
-        // Step 3 is static, so auto-select the only option
-        const options =
-          step3OptionsMap[selectedOption1]?.[selectedOption2] || [];
-        if (options.length === 1) {
-          selectedOption3 = options[0];
-        } else {
-          selectedOption3 = null;
-        }
-        if (!selectedOption3) return;
         const resultDiv = document.getElementById("result");
         let mindPattern = "";
         if (
@@ -278,7 +290,7 @@
         ) {
           mindPattern = mindPatternMap[selectedOption1][selectedOption2];
         } else {
-          mindPattern = `${selectedOption1} + ${selectedOption2} + ${selectedOption3}`;
+          mindPattern = `${selectedOption1} + ${selectedOption2}`;
         }
         resultDiv.textContent = `Your Mind Pattern: ${mindPattern}`;
         resultDiv.style.display = "block";
@@ -306,7 +318,7 @@
         ) {
           mindPattern = mindPatternMap[selectedOption1][selectedOption2];
         } else {
-          mindPattern = `${selectedOption1} + ${selectedOption2} + ${selectedOption3}`;
+          mindPattern = `${selectedOption1} + ${selectedOption2}`;
         }
         detailsDiv.textContent = `Details about Mind Pattern ${mindPattern}:\nThis is a placeholder for more information.`;
         detailsDiv.style.display = "block";
