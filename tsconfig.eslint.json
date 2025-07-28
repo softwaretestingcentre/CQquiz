@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig",
+  "include": [
+    "features/**/*.ts",
+    "src/server.ts",
+    "src/quizRouter.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
