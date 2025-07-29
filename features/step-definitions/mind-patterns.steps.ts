@@ -47,7 +47,7 @@ Then(
   async (actor: Actor, mindPattern: string) => 
     actor.attemptsTo(
         MindPatterns.confirmChoice(),
-        Ensure.that(MindPatterns.getMindPatternText(), includes(`Details about Mind Pattern ${mindPattern}`))
+        Ensure.that(MindPatterns.getMindPatternText(), includes(`${mindPattern} Pattern`))
     )
 );
 

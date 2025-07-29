@@ -124,65 +124,14 @@
         K1: { V2: "KVA", A2: "KAV" },
       };
 
-      const mindPatternStepDescriptions = {
-        A1: {
-          pattern: "<h4>AUDITORY</h4>",
-          description: `
-                <p>I'm comfortable talking to large groups of people, even without advance preparation</p>
-                <p>I prefer to give verbal reports rather than do a visual presentation or make a model.</p>
-                <p>I naturally remember what's said in a conversation</p>
-                <p>I speak without pause (no "um"s) and use precise language.</p>
-                <p>Words flow out easily in logical order without thinking about it.</p>
-                <p>I can multitask auditorily: I can talk with one person and listen to someone else in the background at the same time.</p>
-                <p>I tend to be critical of how things are said.</p>
-                `,
-        },
-        V1: {
-          pattern: "<h4>VISUAL</h4>",
-          description: `
-                <p>The first thing I recall of a person or place is the way something or someone looked.</p>
-                <p>I prefer to write a report rather than do an oral presentation or make a model.</p>
-                <p>The best way for me to organise is to make a list.</p>
-                <p>I like to make direct and steady eye contact with the person I'm talking to.</p>
-                <p>I'm highly aware of the way I look to other people.</p>
-                <p>I can multitask visually: I can read and watch TV at the same time.</p>
-                <p>I tend to be critical of how things look.</p>
-                `,
-        },
-        K1: {
-          pattern: "<h4>KINESTHETIC</h4>",
-          description: `
-                <p>I prefer to be on my feet or moving around. A stand-up desk would really help me.</p>
-                <p>I prefer to share an experience or make a model as a presentation.</p>
-                <p>The best way for me to organise is by making piles.</p>
-                <p>I can easily recall what I did and the physical sensation of an experience.</p>
-                <p>My natural preference is to start hands-on and experiment by doing.</p>
-                <p>I can multitask kinesthetically: I can do two or three things at the same time.</p>
-                <p>I tend to be critical of how things are done.</p>
-                `,
-        },
-        K2: {
-          pattern: "<h4>KINESTHETIC</h4>",
-          description: `
-                <p>I know what I am feeling in my body with my eyes open.</p>
-                <p>I have lots of pent-up energy right below the surface.</p>
-                `,
-        },
-        A2: {
-          pattern: "<h4>AUDITORY</h4>",
-          description: `
-                <p>To make a decision, I prefer to talk both sides through with someone else.</p>
-                <p>I frequently use metaphors when I speak and prefer to share the entire story of an experience.</p>
-                `,
-        },
-        V2: {
-          pattern: "<h4>VISUAL</h4>",
-          description: `
-                <p>I can easily see three-dimensional images in my mind with my eyes open and view these from various angles - above, behind and sideways.</p>
-                <p>I prefer to look at the person I am talking to and then look around.</p>
-                `,
-        },
-      };
+
+      let mindPatternStepDescriptions;
+      (async () => {
+        mindPatternStepDescriptions = (await import('./mindPatternStepDescriptions.js')).mindPatternStepDescriptions;
+        renderStep1Options();
+        renderStep2Options();
+        renderStep3Options();
+      })();
 
       function addStepDescription(div, opt) {
         if (mindPatternStepDescriptions[opt]) {
@@ -281,6 +230,7 @@
         staticDiv.onclick = () => {
           showDetails();
         };
+        addStepDescription(staticDiv, options[0]);
         step3OptionsDiv.appendChild(staticDiv);
       }
 
@@ -337,7 +287,12 @@
 
       function showDetails() {
         const detailsDiv = document.getElementById("details");
-        let mindPattern = "";
+        // Determine the 3 choices
+        const step1 = selectedOption1;
+        const step2 = selectedOption2;
+        const step3 = step3OptionsMap[selectedOption1]?.[selectedOption2]?.[0] || '';
+        // Determine the pattern code (e.g. VAK)
+        let mindPattern = '';
         if (
           mindPatternMap[selectedOption1] &&
           mindPatternMap[selectedOption1][selectedOption2]
@@ -346,14 +301,40 @@
         } else {
           mindPattern = `${selectedOption1} + ${selectedOption2}`;
         }
-        detailsDiv.textContent = `Details about Mind Pattern ${mindPattern}:\nThis is a placeholder for more information.`;
+
+        // Helper to get icon for a code
+        function iconFor(opt) {
+          if (!opt) return '';
+          if (opt[0] === 'A') return '👂';
+          if (opt[0] === 'V') return '👁️';
+          if (opt[0] === 'K') return '✋';
+          return '';
+        }
+
+        // Build table HTML
+        let html = `<table style="border-collapse:collapse;width:auto;font-weight:bold;">`;
+        html += `<thead><tr colspan='4' style='padding:0.5em 1em;border:1px solid #bbb;backgroundColor:f3f3f3'><th>${mindPattern} Pattern</th></tr></thead>`;
+        const thinkingTypes = ["FOCUSED THINKING", "SORTING THINKING", "OPEN THINKING"];
+        const triggers = ["To Trigger Concentration:", "To Trigger Sorting:", "To Trigger Imagination:"];
+        [[step1],[step2],[step3]].forEach((optArr, idx) => {
+          const opt = optArr[0];
+          let channel = '';
+          if (opt && opt[0] === 'V') channel = 'VISUAL';
+          else if (opt && opt[0] === 'A') channel = 'AUDITORY';
+          else if (opt && opt[0] === 'K') channel = 'KINESTHETIC';
+          html += `<tr>`;
+          html += `<td style='padding:0.3em 1em;border:1px solid #bbb;'>${opt || ''}</td>`;
+          html += `<td style='padding:0.3em 1em;border:1px solid #bbb;font-size:1.3em;'>${iconFor(opt)}</td>`;
+          html += `<td style='padding:0.3em 1em;border:1px solid #bbb;'>${thinkingTypes[idx]}</td>`;
+          html += `<td style='padding:0.3em 1em;border:1px solid #bbb;'>${triggers[idx]}<br />${channel ? ' ' + channel : ''}</td>`;
+          html += `</tr>`;
+        });
+        html += `</table>`;
+        detailsDiv.innerHTML = html;
         detailsDiv.style.display = "block";
       }
 
-      // Initial render
-      renderStep1Options();
-      renderStep2Options();
-      renderStep3Options();
+      // Initial render now handled after dynamic import
     </script>
   </body>
 </html>
