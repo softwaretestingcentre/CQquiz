@@ -41,6 +41,12 @@
         align-items: center;
         justify-content: center;
       }
+      .options .option-key {
+        font-weight: bold;
+        font-size: larger;
+        display: block;
+        margin-top: 0.5em;
+      }
       .options .option-card.selected {
         background: #cce5ff;
         border: 2px solid #339af0;
@@ -70,7 +76,7 @@
         <h3>Choose one of the cards below that seems most true for you:</h3>
         <div class="options" id="step-1-options"></div>
       </div>
-      <div id="step-2" class="quiz-step">
+      <div id="step-2" class="quiz-step" style="display: none">
         <h2>Step 2</h2>
         <h3>Choose which of the following two cards is most true for you:</h3>
         <div class="options" id="step-2-options"></div>
@@ -194,7 +200,11 @@
         step1OptionsDiv.innerHTML = "";
         ["A1", "V1", "K1"].forEach((opt) => {
           const div = document.createElement("div");
-          div.textContent = opt;
+          let icon = '';
+          if (opt[0] === 'A') icon = '👂'; // Ear for Auditory
+          else if (opt[0] === 'V') icon = '👁️'; // Eye for Visual
+          else if (opt[0] === 'K') icon = '✋'; // Hand for Kinesthetic
+          div.innerHTML = `<span style='font-size:1.5em;display:block;'>${icon}</span><span class='option-key'>${opt}</span>`;
           div.setAttribute("data-option", opt);
           div.className =
             "option-card" +
@@ -211,11 +221,16 @@
       function renderStep2Options() {
         const step2OptionsDiv = document.getElementById("step-2-options");
         step2OptionsDiv.innerHTML = "";
+        document.getElementById("step-2").style.display = "none";
         if (!selectedOption1) return;
         const options = step2OptionsMap[selectedOption1];
         options.forEach((opt) => {
           const div = document.createElement("div");
-          div.textContent = opt;
+          let icon = '';
+          if (opt[0] === 'A') icon = '👂';
+          else if (opt[0] === 'V') icon = '👁️';
+          else if (opt[0] === 'K') icon = '✋';
+          div.innerHTML = `<span style='font-size:1.5em;display:block;'>${icon}</span><span class='option-key'>${opt}</span>`;
           div.setAttribute("data-option", opt);
           div.className =
             "option-card" +
@@ -227,6 +242,7 @@
           step2OptionsDiv.appendChild(div);
           addStepDescription(div, opt);
         });
+        document.getElementById("step-2").style.display = "block";
       }
 
       function renderStep3Options() {
@@ -255,9 +271,16 @@
           "inline-block";
         // Show the only option as a static card
         const staticDiv = document.createElement("div");
-        staticDiv.textContent = options[0];
+        let icon = '';
+        if (options[0]?.[0] === 'A') icon = '👂';
+        else if (options[0]?.[0] === 'V') icon = '👁️';
+        else if (options[0]?.[0] === 'K') icon = '✋';
+        staticDiv.innerHTML = `<span style='font-size:1.5em;display:block;'>${icon}</span><span class='option-key'>${options[0]}</span>`;
         staticDiv.setAttribute("data-option", options[0]);
         staticDiv.className = "option-card selected";
+        staticDiv.onclick = () => {
+          showDetails();
+        };
         step3OptionsDiv.appendChild(staticDiv);
       }
 

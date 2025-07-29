@@ -21,8 +21,7 @@ When they confirm their choice, they can see more details about their Mind Patte
 
   Scenario Outline: Alex takes the second step in the Quiz
     Given Alex is at the start of the Mind Patterns Quiz
-    When Alex chooses "A1" in Step 1
-    And Alex chooses "<Option 2>" in Step 2
+    When Alex chooses "A1" and "<Option 2>"
     Then Alex should see only "<Option 3>" in Step 3
     And Alex should see their Mind Pattern as "<Mind Pattern>"
 
@@ -33,8 +32,7 @@ When they confirm their choice, they can see more details about their Mind Patte
 
   Scenario Outline: Vicky takes the second step in the Quiz
     Given Vicky is at the start of the Mind Patterns Quiz
-    When Vicky chooses "V1" in Step 1
-    And Vicky chooses "<Option 2>" in Step 2
+    When Vicky chooses "V1" and "<Option 2>"
     Then Vicky should see only "<Option 3>" in Step 3
     And Vicky should see their Mind Pattern as "<Mind Pattern>"
 
@@ -45,8 +43,7 @@ When they confirm their choice, they can see more details about their Mind Patte
 
   Scenario Outline: Kevin takes the second step in the Quiz
     Given Kevin is at the start of the Mind Patterns Quiz
-    When Kevin chooses "K1" in Step 1
-    And Kevin chooses "<Option 2>" in Step 2
+    When Kevin chooses "K1" and "<Option 2>"
     Then Kevin should see only "<Option 3>" in Step 3
     And Kevin should see their Mind Pattern as "<Mind Pattern>"
 
@@ -54,3 +51,9 @@ When they confirm their choice, they can see more details about their Mind Patte
       | Option 2 | Option 3 | Mind Pattern |
       | V2       | A3       | KVA          |
       | A2       | V3       | KAV          |
+
+  Scenario: Alex disagrees with their choices
+    Given Alex is at the start of the Mind Patterns Quiz
+    When Alex chooses "A1" and "K2"
+    And Alex cancels their choices
+    Then Alex should return to Step 1
