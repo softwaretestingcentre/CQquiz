@@ -3,10 +3,10 @@ import path from 'path';
 
 const router = express.Router();
 
-// Serve the quiz.html file
+// Serve the mind-patterns.html file
 router.get('/', (request, resource) => {
-    // Serve quiz.html from src directory
-    resource.sendFile(path.resolve(__dirname, 'quiz.html'));
+    // Serve mind-patterns.html from src directory
+    resource.sendFile(path.resolve(__dirname, 'mind-patterns.html'));
 });
 
 export default router;
