@@ -7,10 +7,11 @@ The user then sees the Mind Pattern that corresponds to their choices
 The user can change their choices and see the corresponding Mind Pattern again
 When they confirm their choice, they can see more details about their Mind Pattern
 
+
   Scenario Outline: Quincy takes the first step in the Quiz
     Given Quincy is at the start of the Mind Patterns Quiz
-    When Quincy chooses "<Option 1>" in Step 1
-    Then Quincy should see "<Option 2a>" and "<Option 2b>" in Step 2
+    Given Quincy chooses "<Option 1>" in Step 1
+    Then Quincy should see only "<Option 2a>" and "<Option 2b>" in Step 2
 
     Examples:
       | Option 1 | Option 2a | Option 2b |
@@ -19,9 +20,10 @@ When they confirm their choice, they can see more details about their Mind Patte
       | K1       | V2        | A2        |
 
   Scenario Outline: Alex takes the second step in the Quiz
-    Given Alex chooses "A1" in Step 1
-    When Alex chooses "<Option 2>" in Step 2
-    Then Alex should see "<Option 3>" in Step 3
+    Given Alex is at the start of the Mind Patterns Quiz
+    When Alex chooses "A1" in Step 1
+    And Alex chooses "<Option 2>" in Step 2
+    Then Alex should see only "<Option 3>" in Step 3
     And Alex should see their Mind Pattern as "<Mind Pattern>"
 
     Examples:
@@ -30,9 +32,10 @@ When they confirm their choice, they can see more details about their Mind Patte
       | V2       | K3       | AVK          |
 
   Scenario Outline: Vicky takes the second step in the Quiz
-    Given Vicky chooses "V1" in Step 1
-    When Vicky chooses "<Option 2>" in Step 2
-    Then Vicky should see "<Option 3>" in Step 3
+    Given Vicky is at the start of the Mind Patterns Quiz
+    When Vicky chooses "V1" in Step 1
+    And Vicky chooses "<Option 2>" in Step 2
+    Then Vicky should see only "<Option 3>" in Step 3
     And Vicky should see their Mind Pattern as "<Mind Pattern>"
 
     Examples:
@@ -41,9 +44,10 @@ When they confirm their choice, they can see more details about their Mind Patte
       | K2       | A3       | VKA          |
 
   Scenario Outline: Kevin takes the second step in the Quiz
-    Given Kevin chooses "K1" in Step 1
-    When Kevin chooses "<Option 2>" in Step 2
-    Then Kevin should see "<Option 3>" in Step 3
+    Given Kevin is at the start of the Mind Patterns Quiz
+    When Kevin chooses "K1" in Step 1
+    And Kevin chooses "<Option 2>" in Step 2
+    Then Kevin should see only "<Option 3>" in Step 3
     And Kevin should see their Mind Pattern as "<Mind Pattern>"
 
     Examples:
