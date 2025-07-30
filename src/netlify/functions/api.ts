@@ -9,6 +9,6 @@ const router = Router();
 router.get("/hello", (req, res) => res.send("Hello World!"));
 
 api.use("/api/", router);
-api.use(express.static(__dirname + '/'));
+api.use(express.static(__dirname + '../../'));
 
 export const handler = serverless(api);
