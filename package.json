@@ -45,6 +45,7 @@
     "@serenity-js/web": "^3.32.4",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
+    "cors": "^2.8.5",
     "eslint": "^8.57.1",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
@@ -60,8 +61,9 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@netlify/functions": "^4.2.1",
     "@types/express": "^5.0.3",
     "express": "^5.1.0",
-    "cors": "^2.8.5"
+    "serverless-http": "^3.2.0"
   }
 }
