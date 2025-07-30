@@ -18,3 +18,5 @@ api.use("/api/", router);
 api.use(express.static(__dirname + '../../'));
 
 export const handler = serverless(api);
+
+console.log('netlify serverless function started');
