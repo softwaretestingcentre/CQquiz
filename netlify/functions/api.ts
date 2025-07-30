@@ -11,11 +11,11 @@ router.get("/hello", (req, res) => res.send("Hello World!"));
 // Serve the mind-patterns.html file
 router.get('/', (request, resource) => {
     // Serve mind-patterns.html from src directory
-    resource.sendFile(path.resolve(__dirname, '../../mind-patterns.html'));
+    resource.sendFile(path.resolve(__dirname, '../../src/mind-patterns.html'));
 });
 
 api.use("/api/", router);
-api.use(express.static(__dirname + '../../'));
+api.use(express.static(__dirname + '../../src/'));
 
 export const handler = serverless(api);
 
