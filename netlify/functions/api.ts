@@ -12,7 +12,7 @@ router.get("/hello", (req, res) => res.send("Hello World!"));
 // Serve the mind-patterns.html file
 router.get('/', (request, resource) => {
     // Serve mind-patterns.html from src directory
-    resource.sendFile(path.relative('netlify/functions/api.ts', 'src/mind-patterns.html'));
+    resource.sendFile(path.resolve(path.relative('netlify/functions/api.ts', 'src/mind-patterns.html')));
 });
 
 api.use("/api/", router);
