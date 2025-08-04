@@ -153,6 +153,22 @@ export const mindPatternStepDescriptions = {
     traits: `<p>Underneath whatever I am doing, I am teaching or selling.</p>`,
     frustrations: `<p>I may have difficulty doing things in a sequential order.</p>`,
     spacing_out: `<p>With touch.</p>`,
+    breakdown: [
+      `<strong>AUDITORY SORTING</strong>: Needs to talk to both sides of a situation and seems to vacillate.`,
+      `<strong>VISUAL FOCUS</strong>: Visually overloads people with emails, texts, or written information.`
+    ],
+    adjustment: [
+      `Make two columns; ask them to write down the pros and cons.`,
+      `Ask for summary in bullet points, or request visual to be put into two pages - one high level, and one with details.`
+    ],
+    presentations: `Look through the audience, find one friendly face, and talk from your passion. 
+      Use your gift of story to connect to the audience's experience. 
+      Use evocative visuals. Stand still so your words stay focused.`,
+    performance_reviews: `Focus on serving visual details rather than making up stories about how you are seen. 
+      To remain open, feel your feet on the ground.`,
+    conflict: `Allow yourself to move and look wherever you want to. 
+    Notice your breathing and the sensations in your body. 
+    Avoid telling yourself any stories and reflect what the other person is saying`
   },
   "VKA": {
     longDescription: `
@@ -228,6 +244,24 @@ export const mindPatternStepDescriptions = {
     traits: `<p>I create networks between people.</p>`,
     frustrations: `<p>I may have difficulty knowing what I feel and want.</p>`,
     spacing_out: `<p>With long verbal explanations.</p>`,
+    breakdown: [
+      `<strong>AUDITORY OPEN</strong>: Doesn't recall what you said.`,
+      `<strong>AUDITORY OPEN</strong>: You feel they are not listening.`,
+      `<strong>AUDITORY OPEN</strong>: Talks in circles or stream of consciousness.`,
+      `<strong>VISUAL FOCUS</strong>: Visually overloads people with emails, texts, or written information.`
+    ],
+    adjustment: [
+      `Make sure you give them time to write what you are saying. Send a quick email recapping the conversation.`,
+      `Encourage people to stand up in the back during a meeting, and ask someone to track the group conversation on a whiteboard.`,
+      `Ask them to sketch out what they are saying, or you write it so they can see it and be come more focused.`,
+      `Ask for summary in bullet points, or request visual to be put into two pages - one high level, and one with details.`
+    ],
+    presentations: `Walk around and begin by asking a series of questions about what matters to the audience. 
+    Have a visual outline you can follow and use a model if possible.`,
+    performance_reviews: `Hold something in your hand that represents what really matters to you, or take notes on what the other person is saying.`,
+    conflict: `Look at something beautiful and keep awareness of your own heart beating, your breath, and physical sensations. 
+    Doodle on paper to keep your mind open. 
+    Inquire of the other person so you can stay connected.`
   },
   "KAV": {
     longDescription: `
@@ -298,6 +332,26 @@ export const mindPatternStepDescriptions = {
     traits: `<p>Being hands-on is natural to me.</p>`,
     frustrations: `<p>I can have difficulty sitting still and looking at complex information.</p>`,
     spacing_out: `<p>When looking at detailed information.</p>`,
+    breakdown: [
+      `<strong>VISUAL OPEN</strong>: Misses content in email and/or does not bother to respond.`,
+      `<strong>AUDITORY SORTING</strong>: Needs to talk to both sides of a situation and seems to vacillate.`,
+      `<strong>KINESTHETIC FOCUS</strong>: Seems jittery and anxious to move. They may fiddle a lot while you are talking or showing them something.`,
+      `<strong>KINESTHETIC FOCUS</strong>: Seems disengaged or spaced out after several minutes of sitting still.`
+    ],
+    adjustment: [
+      `Make sure the subject line has an action such as "Please respond by 3:00 PM." Offer to follow up with a call to discuss. Keep emails as short as possible. Highlight requested actions.`,
+      `Make two columns; ask them to write down the pros and cons.`,
+      `Suggest they get on their feet while you talk, or use flip charts where they can stand and write as the group thinks.`,
+      `Have tactile objects for people to "play" with during the meeting. Encourage people to move.`
+    ],
+    presentations: `Prepare by asking yourself what is a desired outcome that you are passionate about. 
+      Allow yourself to move during the presentation and use images rather than detailed visuals.`,
+    performance_reviews: `Go for a walk with the other person if possible. 
+      Allow your eyes to wander, and tell the other person it helps you listen more effectively. 
+      Ask for specific actions you can take.`,
+    conflict: `Name the sensations in your body to keep your mind open. 
+    Say explicitly what you need and want. 
+    Look at your own hands and at something that re-minds you of what really matters.`,
   },
   "KVA": {
     longDescription: `
@@ -369,6 +423,31 @@ export const mindPatternStepDescriptions = {
     Wants to unite dissimilar elements.</p>`,
     frustrations: `<p>May have difficulty expressing feelings in words.</p>`,
     spacing_out: `<p>With long verbal explanations.</p>`,
+    breakdown: [
+      `<strong>AUDITORY OPEN</strong>: Doesn't recall what you said.`,
+      `<strong>AUDITORY OPEN</strong>: You feel they are not listening.`,
+      `<strong>AUDITORY OPEN</strong>: Talks in circles or stream of consciousness.`,
+      `<strong>KINESTHETIC FOCUS</strong>: Seems jittery and anxious to move. They may fiddle a lot while you are talking or showing them something.`,
+      `<strong>KINESTHETIC FOCUS</strong>: Seems disengaged or spaced out after several minutes of sitting still.`
+    ],
+    adjustment: [
+      `Make sure you give them time to write what you are saying. Send a quick email recapping the conversation.`,
+      `Encourage people to stand up in the back during a meeting, and ask someone to track the group conversation on a whiteboard.`,
+      `Ask them to sketch out what they are saying, or you write it so they can see it and be come more focused.`,
+      `Suggest they get on their feet while you talk, or use flip charts where they can stand and write as the group thinks.`,
+      `Have tactile objects for people to "play" with during the meeting. Encourage people to move.`
+    ],
+    presentations: `Be on your feet, moving; use images that prompt you what to say. 
+      Connect with the audience by asking them questions about what matters to them. 
+      Use action-based language.`,
+    performance_reviews: `Request that you can remain on your feet if possible. 
+      Take notes by mind-mapping. 
+      Write down the questions that come up for you, and then ask them when it's appropriate`,
+    conflict: `Move around, letting your eyes wander. 
+    Doodle as you reflect on what is being said. 
+    Feel your belly and spine to help you find your words. 
+    Call a time-out when your ears are full.`
+
   },
   "AVK": {
     longDescription: `
@@ -431,6 +510,18 @@ export const mindPatternStepDescriptions = {
     traits: `<p>I am naturally good at lecturing, debating, and articulating ideas in a logical way.</p>`,
     frustrations: `<p>I may have difficulty with sequential hands-on tasks or movement.</p>`,
     spacing_out: `<p>With touch.</p>`,
+    breakdown: [
+      `<strong>AUDITORY FOCUS</strong>: Talks too much, and mostly over others.`,
+    ],
+    adjustment: [
+      `Invite them to move in order to open their minds. Write down what they are saying so they will feel heard.`,
+    ],
+    presentations: `Find out about your audience ahead of time, so you can walk in their shoes, 
+    and speak to what matters to them. Stand still or sit. Avoid holding anything in your hands.`,
+    performance_reviews: `Avoid interrupting or arguing; 
+    instead, ask to discuss your thoughts on significant issues when the other person is open to listening.`,
+    conflict: `Name what's important to you as a headline and ask if the other person is willing to listen for "X" minutes. 
+    Keep your eyes focused on the other person to notice the effect of your words.`
   },
   "AKV": {
     longDescription: `
@@ -501,5 +592,22 @@ export const mindPatternStepDescriptions = {
     traits: `<p>I naturally give direction and motivate people by speeches.</p>`,
     frustrations: `<p>I get frustrated when I listen without talking and read a lot of visuals.</p>`,
     spacing_out: `<p>With too many things to look at.</p>`,
+    breakdown: [
+      `<strong>AUDITORY FOCUS</strong>: Talks too much, and mostly over others.`,
+      `<strong>VISUAL OPEN</strong>: Misses content in email and/or does not bother to respond.`,
+    ],
+    adjustment: [
+      `Invite them to move in order to open their minds. Write down what they are saying so they will feel heard.`,
+      `Make sure the subject line has an action such as "Please respond by 3:00 PM." 
+      Offer to follow up with a call to discuss. Keep emails as short as possible. Highlight requested actions.`
+    ],
+    presentations: `Make sure your presentation uses visuals. 
+    Remember to ask questions of the audience. 
+    Notice what you are feeling in your body to slow you down, and talk with people not to them.`,  
+    performance_reviews: `Avoid talking over the other person or building a case against what they are saying. 
+    Hold something in your hand and notice your breathing to keep your mind open.`,
+    conflict: `Have awareness of your own tone of voice. Stay on your feet and be aware of your breath. 
+    Allow your eyes to see your own hands as you notice your body sensations. 
+    Keep asking yourself what really matters to you.`
   },
 };
