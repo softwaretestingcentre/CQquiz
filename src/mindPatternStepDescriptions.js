@@ -328,7 +328,47 @@ export const mindPatternStepDescriptions = {
     <li>Words may take a long time to access; you dislike having your words filled in by others.</li>
     <li>You can get overwhelmed by too much conversation.</li>
     <li>You're very sensitive to tones of voice.</li>
-    </ul>`
+    </ul>`,
+    learning: `
+    <ol>
+    <li>Experience</li>
+    <li>See</li>
+    <li>Hear</li>
+    </ol>`,
+    expressing: `
+    <ol>
+    <li>Do</li>
+    <li>Show</li>
+    <li>Say</li>
+    </ol>`,
+    language: `
+    <ul>
+    <li>I naturally like quiet or music I choose and am very sensitive to sounds</li>
+    <li>I prefer to take more time to think about what I am going to say</li>
+    <li>Words and tone of voice can be profound and have a long-lasting effect</li>
+    <li>I have a fear of interruption and will avoid verbal confrontation.</li>
+    <li>I prefer not to be told what to say or have my words filled in for me.</li>
+    </ul>`,
+    visual: `
+    <ul>
+    <li>I can easily see three-dimensional images in my mind with my eyes open and view these from various angles-above, behind, and sideways</li>
+    <li>I prefer to look at the person I am talking to and then look around.</li>
+    </ul>`,
+    physical: `
+    <ul>
+    <li>I prefer to be on my feet or moving around. A stand-up desk would really help me.</li>
+    <li>I prefer to share an experience or make a model as a presentation.</li>
+    <li>The best way for me to organize is by making piles.</li>
+    <li>I can easily recall what I did and the physical sensations of an experience.</li>
+    <li>My natural preference is to start hands-on and experiment by doing.</li>
+    <li>I can multitask kinesthetically: I can do two or three things at the same time.</li>
+    <li>I tend to be critical of how things are done.</li>
+    </ul>`,
+    traits: `<p>Is a great lover of nature, especially animals. 
+    Has many dissimilar interests (eg, drawing and ice hockey), 
+    Wants to unite dissimilar elements.</p>`,
+    frustrations: `<p>May have difficulty expressing feelings in words.</p>`,
+    spacing_out: `<p>With long verbal explanations.</p>`,
   },
   "AVK": {
     longDescription: `
@@ -352,7 +392,45 @@ export const mindPatternStepDescriptions = {
     <li>You dislike physical humor, such as tickling or pranks.</li>
     <li>You can have trouble doing hands-on, technical skills.</li>
     <li>You may have a tendency to interrupt others in meetings and monopolize conversations.</li>
-    </ul>`
+    </ul>`,
+    learning: `
+    <ol>
+    <li>Hear</li>
+    <li>See</li>
+    <li>Experience</li>
+    </ol>`,
+    expressing: `
+    <ol>
+    <li>Say</li>
+    <li>Show</li>
+    <li>Do</li>
+    </ol>`,
+    language: `
+    <ul>
+    <li>I'm comfortable with talking to large groups of people even without advance preparation</li>
+    <li>I prefer to give verbal reports rather than do a visual presentation or make a model</li>
+    <li>I naturally remember what's said in a conversation</li>
+    <li>I speak without pause (no "um"s) and use precise language</li>
+    <li>Words flow out easily in logical order without thinking about it</li>
+    <li>I can multitask auditorily. I can talk with one person and listen to someone else in the background at the same time</li>
+    <li>I tend to be critical of how things are said.</li>
+    </ul>`,
+    visual: `
+    <ul>
+    <li>I can easily see three-dimensional images in my mind with my eyes open and view these from various angles-above, behind, and sideways.</li>
+    <li>I prefer to look at the person I am talking to and then look around.</li>
+    </ul>`,
+    physical: `
+    <ul>
+    <li>I can naturally sit still for long periods of time.</li>
+    <li>It's challenging for me to do a physical activity in a sequential or regimented way.</li>
+    <li>When doing something physical, I prefer to go at my own speed (whether fast or slow).</li>
+    <li>I don't like casual physical touch.</li>
+    <li>I'm very sensitive to touch, and it can have a very long-lasting effect.</li>
+    </ul>`,
+    traits: `<p>I am naturally good at lecturing, debating, and articulating ideas in a logical way.</p>`,
+    frustrations: `<p>I may have difficulty with sequential hands-on tasks or movement.</p>`,
+    spacing_out: `<p>With touch.</p>`,
   },
   "AKV": {
     longDescription: `
@@ -384,6 +462,44 @@ export const mindPatternStepDescriptions = {
     <li>You can come across as sarcastic.</li>
     <li>You prefer a low amount of visual input and dislike detailed writing, diagrams, or instructions.</li>
     <li>You may have a great deal of pent-up energy right beneath the surface.</li>
-    </ul>`
+    </ul>`,
+    learning: `
+    <ol>
+    <li>Hear</li>
+    <li>Experience</li>
+    <li>See</li>
+    </ol>`,
+    expressing: `
+    <ol>
+    <li>Say</li>
+    <li>Do</li>
+    <li>Show</li>
+    </ol>`,
+    language: `
+    <ul>
+    <li>I'm comfortable talking to large groups of people even with-out advance preparation.</li>
+    <li>I prefer to give verbal reports rather than do a visual presentation or make a model.</li>
+    <li>I naturally remember what's said in a conversation.</li>
+    <li>I speak without pause (no "um"s) and use precise language.</li>
+    <li>Words flow out easily in logical order without thinking about it.</li>
+    <li>I can multitask auditorily: I can talk with one person and listen to someone else in the background at the same time.</li>
+    <li>I tend to be critical of how things are said.</li>
+    </ul>`,
+    visual: `
+    <ul>
+    <li>I prefer a low amount of visual information-e.g., bullet points rather than long paragraphs.</li>
+    <li>I get overwhelmed with too much visual detail.</li>
+    <li>I've had to train myself to make ongoing eye contact.</li>
+    <li>The way someone looks at me can have a very long-lasting effect.</li>
+    <li>I don't like people telling me what to look at.</li>
+    </ul>`,
+    physical: `
+    <ul>
+    <li>I know what I am feeling in my body with my eyes open.</li>
+    <li>I have lots of pent-up energy right below the surface,</li>
+    </ul>`,
+    traits: `<p>I naturally give direction and motivate people by speeches.</p>`,
+    frustrations: `<p>I get frustrated when I listen without talking and read a lot of visuals.</p>`,
+    spacing_out: `<p>With too many things to look at.</p>`,
   },
 };
