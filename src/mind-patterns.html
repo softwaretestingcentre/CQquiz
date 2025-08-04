@@ -393,6 +393,7 @@
         html += `</table>`;
         html += `<div class='long-description'>${mindPatternStepDescriptions[mindPattern].longDescription}</div>`;
 
+        html += `<h2>${mindPattern} Attributes</h2>`
         html += `<table style="border-collapse:collapse;width:auto;font-weight:bold;padding:0.3em 1em;border:1px solid #bbb;">`;
         html += `<tr><td style='background:#f5f5f5;'>Easiest Way to Learn</td><td>${mindPatternStepDescriptions[mindPattern].learning}</td></tr>`;
         html += `<tr><td style='background:#f5f5f5;'>Easiest Way to Express</td><td>${mindPatternStepDescriptions[mindPattern].expressing}</td></tr>`;
@@ -408,11 +409,11 @@
         html += `</table>`;
 
         html += `<div class='side-by-side'>`;
-        html += `<div class='gifts'><h4>Your Natural Gifts and Strengths</h4>${mindPatternStepDescriptions[mindPattern].gifts}</div>`;
-        html += `<div class='challenges'><h4>Your Challenges</h4>${mindPatternStepDescriptions[mindPattern].challenges}</div>`;
+        html += `<div class='gifts'><h4>${mindPattern} Gifts and Strengths</h4>${mindPatternStepDescriptions[mindPattern].gifts}</div>`;
+        html += `<div class='challenges'><h4>${mindPattern} Challenges</h4>${mindPatternStepDescriptions[mindPattern].challenges}</div>`;
         html += `</div>`;
 
-        html += `<h2>Recognizing Others' Mind Patterns</h2>`;
+        html += `<h2>${mindPattern} Breakdowns and Adjustments</h2>`;
         html += `<table>
           <thead>
             <tr style='font-weight:bold;'>
@@ -431,7 +432,7 @@
         html += `</tbody>`;
         html += `</table>`;
         
-        html += `<h2>Coping with Challenges</h2>`;
+        html += `<h2>Coping with ${mindPattern} Challenges</h2>`;
         html += `<table><thead>
             <tr style='font-weight:bold;'>
               <th style='background:#f5f5f5;border:1px solid #222;padding:0.7em 1.2em;'>Presentations</th>
