@@ -380,6 +380,19 @@
           html += `<div class='gifts'><h4>Your Natural Gifts and Strengths</h4>${mindPatternStepDescriptions[mindPattern].gifts}</div>`;
           html += `<div class='challenges'><h4>Your Challenges</h4>${mindPatternStepDescriptions[mindPattern].challenges}</div>`;
           html += `</div>`;
+          html += `<table style="border-collapse:collapse;width:auto;font-weight:bold;padding:0.3em 1em;border:1px solid #bbb;">`;
+          html += `<tr><td style='background:#f5f5f5;'>Easiest Way to Learn</td><td>${mindPatternStepDescriptions[mindPattern].learning}</td></tr>`;
+          html += `<tr><td style='background:#f5f5f5;'>Easiest Way to Express</td><td>${mindPatternStepDescriptions[mindPattern].expressing}</td></tr>`;
+          html += `<tr><td style='background:#f5f5f5;'>Language Attributes</td><td>${mindPatternStepDescriptions[mindPattern].language}</td></tr>`;
+          html += `<tr><td style='background:#f5f5f5;'>Visual Attributes</td><td>${mindPatternStepDescriptions[mindPattern].visual}</td></tr>`;
+          html += `<tr><td style='background:#f5f5f5;'>Physical Attributes</td><td>${mindPatternStepDescriptions[mindPattern].physical}</td></tr>`;
+          html += `<tr><td style='background:#f5f5f5;'>Natural Traits</td>
+            <td style='vertical-align:top;padding-top:0;text-align:left;padding-inline-start: 40px;'>${mindPatternStepDescriptions[mindPattern].traits}</td></tr>`;
+          html += `<tr><td style='background:#f5f5f5;'>Frustrations</td>
+            <td style='vertical-align:top;padding-top:0;text-align:left;padding-inline-start: 40px;'>${mindPatternStepDescriptions[mindPattern].frustrations}</td></tr>`;
+          html += `<tr><td style='background:#f5f5f5;'>Spaces Out</td>
+            <td style='vertical-align:top;padding-top:0;text-align:left;padding-inline-start: 40px;'>${mindPatternStepDescriptions[mindPattern].spacing_out}</td></tr>`;
+          html += `</table>`;
         }
         detailsDiv.innerHTML = html;
         detailsDiv.style.display = "block";

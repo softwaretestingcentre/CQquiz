@@ -86,7 +86,7 @@ export const mindPatternStepDescriptions = {
       <p>I prefer not to be told what to say or have my words filled in for me.</p>
     `,
   },
-  VAK: {
+  "VAK": {
     longDescription: `
     <p>You naturally "show and tell." You enjoy looking at possibilities - flipping through catalogs, going window-shopping or people-watching 
     and talking to yourself or someone else about what you see. You make steady eye contact and create a visual impression with the clothes you wear, 
@@ -114,9 +114,47 @@ export const mindPatternStepDescriptions = {
     <li>You have to do a physical action over and over in order to learn it.</li>
     <li>Touch is not casual for you.</li>
     <li>You can become numb to how you are feeling if you are visually engaged for a long period of time.</li>
-    </ul>`
+    </ul>`,
+    learning: `
+    <ol>
+    <li>See</li>
+    <li>Hear</li>
+    <li>Experience</li>
+    </ol>`,
+    expressing: `
+    <ol>
+    <li>Show</li>
+    <li>Say</li>
+    <li>Do</li>
+    </ol>`,
+    language: `
+    <ul>
+    <li>To make a decision, I prefer to talk both sides through with someone else.</li>
+    <li>I frequently use metaphors when I speak and prefer to share the entire story of an experience.</li>
+    </ul>`,
+    visual: `
+    <ul>
+    <li>The first thing I recall of a person or place is the way some thing or someone looked.</li>
+    <li>I'd prefer to write a report rather than do an oral presentation or make a model.</li>
+    <li>The best way for me to organize is to make a list.</li>
+    <li>I like to make direct and steady eye contact with the person I'm talking to.</li>
+    <li>I'm highly aware of the way I look to other people.</li>
+    <li>I can multitask visually: I can read and watch TV at the same time.</li>
+    <li>I tend to be critical of how things look.</li>
+    </ul>`,
+    physical: `
+    <ul>
+    <li>I can naturally sit still for long periods of time.</li>
+    <li>It's challenging for me to do a physical activity in a sequential or regimented way.</li>
+    <li>When doing something physical, I prefer to go at my own speed (whether fast or slow).</li>
+    <li>I don't like casual physical touch.</li>
+    <li>I'm very sensitive to touch, and it can have a very long-lasting effect.</li>
+    </ul>`,
+    traits: `<p>Underneath whatever I am doing, I am teaching or selling.</p>`,
+    frustrations: `<p>I may have difficulty doing things in a sequential order.</p>`,
+    spacing_out: `<p>With touch.</p>`,
   },
-  "VAK": {
+  "VKA": {
     longDescription: `
     <p>People are often struck right away by your visual meticulousness. By nature, you are someone who can immediately spot the single typo 
     in the hundred-page report. How you look is extremely important to you, you want your clothes, body, possessions, and surroundings 
@@ -151,7 +189,45 @@ export const mindPatternStepDescriptions = {
     <li>Words can take a long time to access.</li>
     <li>You dislike having words filled in by others.</li>
     <li>You may find it difficult to concentrate when required to listen for long periods or when asked questions about the details of what you've heard.</li>
-    </ul>`
+    </ul>`,
+    learning: `
+    <ol>
+    <li>See</li>
+    <li>Experience</li>
+    <li>Hear</li>
+    </ol>`,
+    expressing: `
+    <ol>
+    <li>Show</li>
+    <li>Do</li>
+    <li>Say</li>
+    </ol>`,
+    language: `
+    <ul>
+      <li>I naturally like quiet or music I choose and am very sensitive to sounds.</li>
+      <li>I prefer to take more time to think about what I am going to say.</li>
+      <li>Words and tone of voice can be profound and have a long-lasting effect.</li>
+      <li>I have a fear of interruption and will avoid verbal confrontation.</li>
+      <li>I prefer not to be told what to say or have my words filled in for me.</li>
+    </ul>`,
+    visual: `
+    <ul>
+      <li>The first thing I recall about a person or place is the way something or someone looked.</li>
+      <li>I'd prefer to write a report rather than do an oral presentation or make a model.</li>
+      <li>The best way for me to organize is to make a list.</li>
+      <li>I like to make direct and steady eye contact with the person I'm talking to.</li>
+      <li>I'm highly aware of the way I look to other people.</li>
+      <li>I can multitask visually; I can read and watch TV at the same time.</li>
+      <li>I tend to be critical of how things look.</li>
+    </ul>`,
+    physical: `
+    <ul>
+      <li>I know what I am feeling in my body with my eyes open.</li>
+      <li>I have lots of pent-up energy right below the surface.</li>
+    </ul>`,
+    traits: `<p>I create networks between people.</p>`,
+    frustrations: `<p>I may have difficulty knowing what I feel and want.</p>`,
+    spacing_out: `<p>With long verbal explanations.</p>`,
   },
   "KAV": {
     longDescription: `
@@ -183,7 +259,45 @@ export const mindPatternStepDescriptions = {
     <li>You need to move and jiggle, you may have trouble sitting still for long periods of time.</li>
     <li>Casual touch, which comes naturally to you, may be offensive to others.</li>
     <li>"Nasty" looks - glances that indicate judgment or criticism - can be more painful than physical or verbal punishments.</li>
-    </ul>`
+    </ul>`,
+    learning: `
+    <ol>
+    <li>Experience</li>
+    <li>Hear</li>
+    <li>See</li>
+    </ol>`,
+    expressing: `
+    <ol>
+    <li>Do</li>
+    <li>Say</li>
+    <li>Show</li>
+    </ol>`,
+    language: `
+    <ul>
+    <li>To make a decision, I prefer to talk both sides through with someone else.</li>
+    <li>I frequently use metaphors when I speak and prefer to share the entire story of an experience.</li>
+    </ul>`,
+    visual: `
+    <ul>
+    <li>I prefer a low amount of visual information - e.g., bullet points rather than long paragraphs.</li>
+    <li>I get overwhelmed with too much visual detail.</li>
+    <li>I've had to train myself to make ongoing eye contact.</li>
+    <li>The way someone looks at me can have a very long-lasting effect.</li>
+    <li>I don't like people telling me what to look at.</li>
+    </ul>`,
+    physical: `
+    <ul>
+    <li>I prefer to be on my feet or moving around. A stand-up desk would really help me.</li>
+    <li>I prefer to share an experience or make a model as a presentation.</li>
+    <li>The best way for me to organize is by making piles.</li>
+    <li>I can easily recall what I did and the physical sensations of an experience.</li>
+    <li>My natural preference is to start hands-on and experiment by doing.</li>
+    <li>I can multitask kinesthetically: I can do two or three things at the same time.</li>
+    <li>I tend to be critical of how things are done.</li>
+    </ul>`,
+    traits: `<p>Being hands-on is natural to me.</p>`,
+    frustrations: `<p>I can have difficulty sitting still and looking at complex information.</p>`,
+    spacing_out: `<p>When looking at detailed information.</p>`,
   },
   "KVA": {
     longDescription: `
