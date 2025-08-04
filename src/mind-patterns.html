@@ -66,6 +66,50 @@
         color: #555;
         font-size: small;
       }
+      .long-description {
+        margin-top: 1.5em;
+        background: #f3f3f3;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 1em 1.2em;
+        color: #222;
+        font-size: 1.08em;
+        box-sizing: border-box;
+        max-width: 100%;
+        word-break: break-word;
+        white-space: normal;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .side-by-side {
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        align-items: flex-start;
+      }
+      .gifts, .challenges {
+        flex: 1 1 0;
+        background: #f3f3f3;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 1em 1.2em;
+        color: #222;
+        font-size: 1.08em;
+        box-sizing: border-box;
+        max-width: 100%;
+        word-break: break-word;
+        white-space: normal;
+        min-width: 0;
+      }
+      .gifts {
+        background: #e6f9e6 !important;
+      }
+      .challenges {
+        background: #fff4e0 !important;
+      }
     </style>
   </head>
   <body>
@@ -312,8 +356,8 @@
         }
 
         // Build table HTML
-        let html = `<table style="border-collapse:collapse;width:auto;font-weight:bold;">`;
-        html += `<thead><tr colspan='4' style='padding:0.5em 1em;border:1px solid #bbb;backgroundColor:f3f3f3'><th>${mindPattern} Pattern</th></tr></thead>`;
+        let html = `<h1>${mindPattern} Pattern</h1>
+        <table style="border-collapse:collapse;width:auto;font-weight:bold;">`;
         const thinkingTypes = ["FOCUSED THINKING", "SORTING THINKING", "OPEN THINKING"];
         const triggers = ["To Trigger Concentration:", "To Trigger Sorting:", "To Trigger Imagination:"];
         [[step1],[step2],[step3]].forEach((optArr, idx) => {
@@ -330,6 +374,13 @@
           html += `</tr>`;
         });
         html += `</table>`;
+        if (mindPatternStepDescriptions[mindPattern]) {
+          html += `<div class='long-description'>${mindPatternStepDescriptions[mindPattern].longDescription}</div>`;
+          html += `<div class='side-by-side'>`;
+          html += `<div class='gifts'><h4>Your Natural Gifts and Strengths</h4>${mindPatternStepDescriptions[mindPattern].gifts}</div>`;
+          html += `<div class='challenges'><h4>Your Challenges</h4>${mindPatternStepDescriptions[mindPattern].challenges}</div>`;
+          html += `</div>`;
+        }
         detailsDiv.innerHTML = html;
         detailsDiv.style.display = "block";
       }
