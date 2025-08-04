@@ -90,7 +90,7 @@ export const mindPatternStepDescriptions = {
     longDescription: `
     <p>You naturally "show and tell." You enjoy looking at possibilities - flipping through catalogs, going window-shopping or people-watching 
     and talking to yourself or someone else about what you see. You make steady eye contact and create a visual impression with the clothes you wear, 
-    which are usually quite colorful and well coordinated. You habitually are attracted to anything in print-novels, billboards, even cereal boxes. 
+    which are usually quite colorful and well coordinated. You habitually are attracted to anything in print - novels, billboards, even cereal boxes. 
     You can keep masses of visual details stored in your mind and remember them easily. Your feelings are written all over your face. 
     In fact, by looking at your face, others may know how you feel before you are even aware of it.</p>
     <p>Your words express a lot of energy and are often very persuasive, selling or building a case for something. 
@@ -283,7 +283,7 @@ export const mindPatternStepDescriptions = {
     <li>You enjoy telling stories of what you've done, how you did it, and how it felt to do it.</li>
     <li>You see the whole of something.</li>
     <li>You're able to access and verbalize body sensations in a specific, organized way. You can tell exactly where your head hurts or which muscle in your leg is pulled.</li>
-    <li>You like to work with your hands-for example, tinkering with cars, working with wood or crafts.</li>
+    <li>You like to work with your hands - for example, tinkering with cars, working with wood or crafts.</li>
     <li>You are skilled at teaching people how to do things, since translating action into words is easy.</li>
     <li>You may be keenly interested in how things work, from complex machines to the human body.</li>
     </ul>`,
@@ -351,7 +351,7 @@ export const mindPatternStepDescriptions = {
       Ask for specific actions you can take.`,
     conflict: `Name the sensations in your body to keep your mind open. 
     Say explicitly what you need and want. 
-    Look at your own hands and at something that re-minds you of what really matters.`,
+    Look at your own hands and at something that reminds you of what really matters.`,
   },
   "KVA": {
     longDescription: `
@@ -405,7 +405,7 @@ export const mindPatternStepDescriptions = {
     </ul>`,
     visual: `
     <ul>
-    <li>I can easily see three-dimensional images in my mind with my eyes open and view these from various angles-above, behind, and sideways</li>
+    <li>I can easily see three-dimensional images in my mind with my eyes open and view these from various angles - above, behind, and sideways</li>
     <li>I prefer to look at the person I am talking to and then look around.</li>
     </ul>`,
     physical: `
@@ -496,7 +496,7 @@ export const mindPatternStepDescriptions = {
     </ul>`,
     visual: `
     <ul>
-    <li>I can easily see three-dimensional images in my mind with my eyes open and view these from various angles-above, behind, and sideways.</li>
+    <li>I can easily see three-dimensional images in my mind with my eyes open and view these from various angles - above, behind, and sideways.</li>
     <li>I prefer to look at the person I am talking to and then look around.</li>
     </ul>`,
     physical: `
@@ -568,7 +568,7 @@ export const mindPatternStepDescriptions = {
     </ol>`,
     language: `
     <ul>
-    <li>I'm comfortable talking to large groups of people even with-out advance preparation.</li>
+    <li>I'm comfortable talking to large groups of people even without advance preparation.</li>
     <li>I prefer to give verbal reports rather than do a visual presentation or make a model.</li>
     <li>I naturally remember what's said in a conversation.</li>
     <li>I speak without pause (no "um"s) and use precise language.</li>
@@ -578,7 +578,7 @@ export const mindPatternStepDescriptions = {
     </ul>`,
     visual: `
     <ul>
-    <li>I prefer a low amount of visual information-e.g., bullet points rather than long paragraphs.</li>
+    <li>I prefer a low amount of visual information - e.g., bullet points rather than long paragraphs.</li>
     <li>I get overwhelmed with too much visual detail.</li>
     <li>I've had to train myself to make ongoing eye contact.</li>
     <li>The way someone looks at me can have a very long-lasting effect.</li>
