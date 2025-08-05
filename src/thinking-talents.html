@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thinking Talents</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2em;
+        background: #f8f8f8;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 2em;
+      }
+      .talents-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2em;
+        justify-content: center;
+      }
+      .talent-card {
+        background: #fff;
+        border: 2px solid #bbb;
+        border-radius: 18px;
+        width: 320px;
+        min-height: 420px;
+        box-shadow: 0 2px 8px #0001;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.2em 1.2em 0.5em 1.2em;
+        margin-bottom: 1em;
+        position: relative;
+      }
+      .talent-card .talent-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin: 0.5em 0 0.2em 0;
+        letter-spacing: 0.01em;
+        text-align: center;
+      }
+      .talent-card .talent-icon {
+        margin: 1.2em 0 1em 0;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .talent-card .talent-question {
+        font-size: 1.1em;
+        font-weight: bold;
+        text-align: center;
+        margin: 0.5em 0 0.5em 0;
+      }
+      .talent-card .talent-desc {
+        font-size: 1em;
+        text-align: center;
+        margin: 0.5em 0 1.2em 0;
+        color: #333;
+      }
+      .talent-card .talent-choices {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: auto;
+        border-top: 1px solid #bbb;
+        padding-top: 0.7em;
+        font-size: 1.1em;
+      }
+      .talent-card .talent-choice {
+        flex: 1 1 0;
+        text-align: center;
+        cursor: pointer;
+        padding: 0.3em 0.2em;
+        border-radius: 6px;
+        margin: 0 0.2em;
+        transition: background 0.15s, color 0.15s, font-weight 0.15s;
+        border: 1px solid transparent;
+      }
+      .talent-card .talent-choice.selected {
+        background: #cce5ff;
+        color: #0056b3;
+        font-weight: bold;
+        border: 1.5px solid #339af0;
+      }
+      .talent-card .talent-choice:active {
+        background: #b3d7f7;
+      }
+      .talent-card .talent-choice:not(.selected):hover {
+        background: #f0f7ff;
+      }
+      .talent-card .talent-choices {
+        margin-bottom: 0.7em;
+      }
+      #calculating-message {
+        display: none;
+        text-align: center;
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #0077b6;
+        margin-top: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Thinking Talents</h1>
+    <div class="talents-grid" id="talents-grid">
+      <!-- Cards will be rendered here -->
+    </div>
+    <div id="calculating-message">Your Thinking Talents profile is being calculated...</div>
+    <script>
+      // Card data for the first card, rest are blank
+      const cards = [
+        {
+          title: "Enrolling",
+          icon: `<svg viewBox='0 0 120 120' width='100' height='100'><polygon points='10,60 60,10 110,60 60,110' fill='#222' stroke='#fff' stroke-width='4'/><g><rect x='30' y='55' width='60' height='20' rx='6' fill='#fff'/><rect x='30' y='55' width='60' height='10' rx='6' fill='#bbb'/><polygon points='35,65 60,90 85,65 80,60 60,80 40,60' fill='#bbb'/></g><g><rect x='40' y='60' width='40' height='10' rx='4' fill='#888'/></g></svg>`,
+          question: "How can I relate to this new person?",
+          desc:
+            "Enjoys challenge of meeting new people and getting in their good graces; enjoys developing rapport, breaking the ice, making a new connection, then moving on.",
+        },
+      ];
+      // Add 34 blank cards
+      for (let i = 1; i < 35; ++i) {
+        cards.push({
+          title: "",
+          icon: "",
+          question: "",
+          desc: "",
+        });
+      }
+      // State: null = no selection, 0 = Always, 1 = Sometimes, 2 = Never
+      let selections = Array(35).fill(null);
+      function renderCards() {
+        const grid = document.getElementById("talents-grid");
+        grid.innerHTML = "";
+        cards.forEach((card, idx) => {
+          const div = document.createElement("div");
+          div.className = "talent-card";
+          div.innerHTML = `
+            <div style="font-size:0.95em;color:#888;letter-spacing:0.08em;margin-bottom:0.2em;">THINKING TALENTS</div>
+            <div class="talent-title">${card.title}</div>
+            <div class="talent-icon">${card.icon || ""}</div>
+            <div class="talent-question">${card.question}</div>
+            <div class="talent-desc">${card.desc}</div>
+            <div class="talent-choices">
+              <div class="talent-choice${selections[idx]===0?" selected":""}" onclick="selectChoice(${idx},0)">ALWAYS</div>
+              <div class="talent-choice${selections[idx]===1?" selected":""}" onclick="selectChoice(${idx},1)">SOMETIMES</div>
+              <div class="talent-choice${selections[idx]===2?" selected":""}" onclick="selectChoice(${idx},2)">NEVER</div>
+            </div>
+          `;
+          grid.appendChild(div);
+        });
+      }
+      window.selectChoice = function(idx, val) {
+        selections[idx] = val;
+        renderCards();
+        if (selections.every((s) => s !== null)) {
+          document.getElementById("calculating-message").style.display = "block";
+        } else {
+          document.getElementById("calculating-message").style.display = "none";
+        }
+      };
+      renderCards();
+    </script>
+  </body>
+</html>
