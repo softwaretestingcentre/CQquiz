@@ -107,31 +107,44 @@
   </head>
   <body>
     <h1>Thinking Talents</h1>
-    <div class="talents-grid" id="talents-grid">
-      <!-- Cards will be rendered here -->
+    <div class="intro">
+      <p>Identifying your thinking talents begins with reading through each of the thirty-five talents in the "cards" below. All you need to remember about thinking talents are the following three characteristics:</p>
+      <ul>
+        <li>They are innate ways of thinking. That is, you've always been really good at doing them, even if you never had any specific training, and you tend to use them when faced with challenges.</li>
+        <li>You get natural joy and energy from using your thinking talents, and you don't burn out.</li>
+        <li>You excel in using these talents and enjoy developing capacities with them.</li>
+      </ul>
+      <p>Understanding these aspects will help you distinguish thinking talents from skills, personality traits, or other capacities.</p>
+      <p>The thinking talent self-assessment works like a card game. You will see that each thinking-talent card has a label at the bottom that reads "ALWAYS-SOMETIMES-NEVER".</p>
+      <p>As you read the cards that follow, click a label to select or deselect it. The first is for cards that describe: "This ALWAYS gives me energy". The second is for cards that describe: "This SOMETIMES gives me energy". The third is for cards that describe: "This NEVER gives me energy".</p>
+      <p>As you go through the cards, thinking of all areas of your life, they will be listed on the right of the page.</p>
+      <p>Once you have sorted all the talents into these three categories, go to the "ALWAYS" group and edit it down to the five to eight strongest talents. If you have more than eight, ask yourself which ones have always been true for you and always will be true for you; eliminate those that aren't quite as strong. If you have fewer than five, go to the "SOMETIMES" group and add the strongest ones there to the "ALWAYS" group until you have five. You may have talents in your "ALWAYS" group that you think of as irrelevant to your work, but if they fit the above criteria, please consider them thinking talents anyway. The five to eight cards remaining in the "ALWAYS" group will most accurately describe what you consider to be your dominant thinking talents.</p>
+      <p>There is no way you can be wrong. As your awareness of thinking talents increases, you'll recognize things in yourself you never noticed before, so over time you might need to reconsider some of your choices. As your understanding grows, you can always change your mind.</p>
+      <p>In the future, when you have a breakthrough in your thinking, complete a task well, or have an experience that makes you feel fully alive, take a minute to reflect on what thinking talents you just used. It's also useful to notice how your talents show up for you in different domains of life: work, exercise, family, hobbies, or with different people. Through this broad spectrum of observations, you will collect insights that will be the optimal guide for using your thinking talents well.</p>
     </div>
-    <div id="calculating-message">Your Thinking Talents profile is being calculated...</div>
+    <div style="display: flex; align-items: flex-start;">
+      <div class="talents-grid" id="talents-grid">
+        <!-- Cards will be rendered here -->
+      </div>
+      <aside id="talent-summary" style="min-width:260px;max-width:320px;margin-left:2.5em;padding:1.2em 1.2em 1.2em 1.2em;background:#f4f8fb;border-radius:16px;border:1.5px solid #cce5ff;box-shadow:0 2px 8px #0001;">
+        <h2 style="font-size:1.2em;text-align:center;margin-top:0;margin-bottom:1.2em;color:#0077b6;">Your Selections</h2>
+        <div style="margin-bottom:1.2em;">
+          <strong style="color:#0056b3;">Always</strong>
+          <ul id="list-always" style="min-height:2em;margin:0.3em 0 0.7em 1.1em;padding:0;font-size:1em;"></ul>
+        </div>
+        <div style="margin-bottom:1.2em;">
+          <strong style="color:#888;">Sometimes</strong>
+          <ul id="list-sometimes" style="min-height:2em;margin:0.3em 0 0.7em 1.1em;padding:0;font-size:1em;"></ul>
+        </div>
+        <div>
+          <strong style="color:#b30000;">Never</strong>
+          <ul id="list-never" style="min-height:2em;margin:0.3em 0 0.7em 1.1em;padding:0;font-size:1em;"></ul>
+        </div>
+      </aside>
+    </div>
+    <!-- Calculating message removed -->
     <script>
-      // Card data for the first card, rest are blank
-      const cards = [
-        {
-          title: "Enrolling",
-          icon: `<svg viewBox='0 0 120 120' width='100' height='100'><polygon points='10,60 60,10 110,60 60,110' fill='#222' stroke='#fff' stroke-width='4'/><g><rect x='30' y='55' width='60' height='20' rx='6' fill='#fff'/><rect x='30' y='55' width='60' height='10' rx='6' fill='#bbb'/><polygon points='35,65 60,90 85,65 80,60 60,80 40,60' fill='#bbb'/></g><g><rect x='40' y='60' width='40' height='10' rx='4' fill='#888'/></g></svg>`,
-          question: "How can I relate to this new person?",
-          desc:
-            "Enjoys challenge of meeting new people and getting in their good graces; enjoys developing rapport, breaking the ice, making a new connection, then moving on.",
-        },
-      ];
-      // Add 34 blank cards
-      for (let i = 1; i < 35; ++i) {
-        cards.push({
-          title: "",
-          icon: "",
-          question: "",
-          desc: "",
-        });
-      }
-      // State: null = no selection, 0 = Always, 1 = Sometimes, 2 = Never
+      let cards = [];
       let selections = Array(35).fill(null);
       function renderCards() {
         const grid = document.getElementById("talents-grid");
@@ -153,17 +166,41 @@
           `;
           grid.appendChild(div);
         });
+        updateSummary();
+      }
+
+      function updateSummary() {
+        const always = [], sometimes = [], never = [];
+        selections.forEach((sel, idx) => {
+          if (!cards[idx] || !cards[idx].title) return;
+          if (sel === 0) always.push(cards[idx].title);
+          else if (sel === 1) sometimes.push(cards[idx].title);
+          else if (sel === 2) never.push(cards[idx].title);
+        });
+        const setList = (id, arr) => {
+          const ul = document.getElementById(id);
+          if (!ul) return;
+          ul.innerHTML = arr.length ? arr.map(t => `<li>${t}</li>`).join('') : '<li style="color:#bbb;font-style:italic;">None</li>';
+        };
+        setList('list-always', always);
+        setList('list-sometimes', sometimes);
+        setList('list-never', never);
       }
       window.selectChoice = function(idx, val) {
-        selections[idx] = val;
-        renderCards();
-        if (selections.every((s) => s !== null)) {
-          document.getElementById("calculating-message").style.display = "block";
+        // If the same value is clicked again, clear the selection
+        if (selections[idx] === val) {
+          selections[idx] = null;
         } else {
-          document.getElementById("calculating-message").style.display = "none";
+          selections[idx] = val;
         }
+        renderCards();
       };
-      renderCards();
+      fetch('thinking-talents-cards.json')
+        .then(response => response.json())
+        .then(data => {
+          cards = data;
+          renderCards();
+        });
     </script>
   </body>
 </html>
