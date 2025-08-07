@@ -124,7 +124,7 @@
       <p>As you go through the cards, thinking of all areas of your life, they will be listed on the right of the page.</p>
       <p>There is no way you can be wrong. As your awareness of thinking talents increases, you'll recognize things in yourself you never noticed before, so over time you might need to reconsider some of your choices. As your understanding grows, you can always change your mind.</p>
       <p>In the future, when you have a breakthrough in your thinking, complete a task well, or have an experience that makes you feel fully alive, take a minute to reflect on what thinking talents you just used. It's also useful to notice how your talents show up for you in different domains of life: work, exercise, family, hobbies, or with different people. Through this broad spectrum of observations, you will collect insights that will be the optimal guide for using your thinking talents well.</p>
-      <div class="shadow" style="background:#f5f5f5ab;border:1.2px solid #222;border-radius:12px;padding:1.2em 1.2em 1.2em 1.2em;margin:2em;font-size:small">
+      <div class="shadow" style="background:#888;border:1.2px solid #222;border-radius:12px;padding:1.2em 1.2em 1.2em 1.2em;margin:2em;font-size:small">
       <h3>SHADOW ATTRIBUTES</h3>
       <p>Some people have difficulty identifying their thinking talents, because as a society we have been conditioned to focus attention on fixing our deficits rather than maximizing our strengths. Most training programs emphasize weaknesses that need to be improved. Furthermore, some cultures, religions, and family traditions consider modesty a virtue, thereby eclipsing the ability to even admit one's talents.</p>
       <p>Therefore, we have developed an additional lens we call the "shadow attribute", to make it easier to recognize a talent. It's a way of understanding what the hidden talent is behind particular behaviors. For instance, the shadow attribute for optimism is "cheerleading." Jamie, no matter how bad things got, always cheered other people on, to the point where they rolled their eyes and said she was denying reality.</p>
@@ -138,6 +138,9 @@
       </div>
       <aside id="talent-summary" style="min-width:260px;max-width:320px;margin-left:2.5em;padding:1.2em 1.2em 1.2em 1.2em;background:#f4f8fb;border-radius:16px;border:1.5px solid #cce5ff;box-shadow:0 2px 8px #0001;top:2em;position:sticky;">
         <h2 style="font-size:1.2em;text-align:center;margin-top:0;margin-bottom:1.2em;color:#0077b6;">Your Selections</h2>
+        <div id="analysis-btn-container" style="text-align:center;margin-top:0.7em;display:none;">
+          <button id="analysis-btn" style="background:#0077b6;color:#fff;border:none;border-radius:7px;padding:0.6em 1.5em;font-size:1.08em;font-weight:bold;cursor:pointer;box-shadow:0 2px 6px #0001;transition:background 0.15s;">Analysis</button>
+        </div>
         <div style="margin-bottom:1.2em;">
           <strong style="color:#0056b3;">Always</strong>
           <ul id="list-always" style="min-height:2em;margin:0.3em 0 0.7em 1.1em;padding:0;font-size:1em;"></ul>
@@ -223,11 +226,14 @@
 
         // Highlight Always list background based on count
         const alwaysUl = document.getElementById('list-always');
+        const analysisBtnContainer = document.getElementById('analysis-btn-container');
         if (alwaysUl) {
           if (always.length >= 5 && always.length <= 8) {
             alwaysUl.style.background = '#d4f8d4'; // light green
+            if (analysisBtnContainer) analysisBtnContainer.style.display = '';
           } else {
             alwaysUl.style.background = '#fffbe6'; // light yellow
+            if (analysisBtnContainer) analysisBtnContainer.style.display = 'none';
           }
         }
       }
@@ -267,6 +273,90 @@
           cards = data;
           renderCards();
         });
+    </script>
+    <div id="analysis-table-container" style="max-width:700px;margin:3em auto 2em auto;display:none;"></div>
+    <script>
+      // Helper: get cognitive style for a card (from card.cognitive_style in JSON)
+      function getCognitiveStyle(card) {
+        return card.cognitive_style || 'Unknown';
+      }
+
+      // Render analysis table
+      function renderAnalysisTable() {
+        const container = document.getElementById('analysis-table-container');
+        if (!container) return;
+        // Hide and collapse the talents grid
+        const grid = document.getElementById('talents-grid');
+        if (grid) {
+          grid.style.transition = 'max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s';
+          grid.style.overflow = 'hidden';
+          grid.style.maxHeight = '0';
+          grid.style.opacity = '0';
+          grid.style.pointerEvents = 'none';
+        }
+        // Get selected cards (ALWAYS group)
+        const selected = selections
+          .map((sel, idx) => sel === 0 ? { ...cards[idx], idx } : null)
+          .filter(Boolean);
+        if (!selected.length) {
+          container.style.display = 'none';
+          container.innerHTML = '';
+          return;
+        }
+        // Get all possible cognitive styles from the cards
+        const allStylesSet = new Set(cards.map(card => getCognitiveStyle(card)));
+        const allStyles = Array.from(allStylesSet).filter(s => s && s !== 'Unknown');
+        // Count by cognitive style
+        const styleCounts = {};
+        selected.forEach(card => {
+          const style = getCognitiveStyle(card);
+          styleCounts[style] = (styleCounts[style] || 0) + 1;
+        });
+        // Find blind spots (styles with no selections)
+        const blindSpots = allStyles.filter(style => !styleCounts[style]);
+        // Table rows
+        const rows = selected.map(card =>
+          `<tr><td style='padding:0.4em 1em;border:1px solid #ccc;'>${card.title}</td><td style='padding:0.4em 1em;border:1px solid #ccc;'>${getCognitiveStyle(card)}</td></tr>`
+        ).join('');
+        // Style count summary
+        const styleSummary = Object.entries(styleCounts)
+          .map(([style, count]) => `<li style='margin-bottom:0.2em;'><strong>${style}:</strong> ${count}</li>`)
+          .join('');
+        // Blind spots summary
+        const blindSpotsSummary = blindSpots.length
+          ? `<div style='margin-top:1.2em;'><strong>Blind Spots (no selections):</strong><ul style='margin:0.5em 0 0 1.2em;padding:0;'>${blindSpots.map(style => `<li style='color:#b30000;'>${style}</li>`).join('')}</ul></div>`
+          : '';
+        container.innerHTML = `
+          <h2 style='text-align:center;margin-bottom:1em;color:#0077b6;'>Analysis of Your Selections</h2>
+          <table style='width:100%;border-collapse:collapse;margin-bottom:1.2em;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px #0001;'>
+            <thead>
+              <tr style='background:#f4f8fb;'>
+                <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>Talent</th>
+                <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>Cognitive Style</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows}
+            </tbody>
+          </table>
+          <div style='margin-bottom:1em;'>
+            <strong>Number of selections per cognitive style:</strong>
+            <ul style='margin:0.5em 0 0 1.2em;padding:0;'>
+              ${styleSummary}
+            </ul>
+          </div>
+          ${blindSpotsSummary}
+        `;
+        container.style.display = '';
+      }
+
+      // Add click handler for Analysis button
+      document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('analysis-btn');
+        if (btn) {
+          btn.onclick = renderAnalysisTable;
+        }
+      });
     </script>
   </body>
 </html>
