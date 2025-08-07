@@ -162,10 +162,13 @@
             <div class="talent-icon">${card.icon || ""}</div>
             <div class="talent-question">${card.question}</div>
             <div class="talent-desc">${card.desc}</div>
+            <div class="talent-shadow-bar" style="width:100%;background:#888;margin:0.5em 0 0.7em 0;padding:0.5em 0.7em 0.5em 0.7em;border-radius:7px;box-sizing:border-box;text-align:center;">
+              <span style="color:#fff;font-style:italic;font-size:1em;font-weight:bold;">${card.shadow || ''}</span>
+            </div>
             <div class="talent-choices">
-              <div class="talent-choice${selections[idx]===0?" selected":""}" onclick="selectChoice(${idx},0)">ALWAYS</div>
-              <div class="talent-choice${selections[idx]===1?" selected":""}" onclick="selectChoice(${idx},1)">SOMETIMES</div>
-              <div class="talent-choice${selections[idx]===2?" selected":""}" onclick="selectChoice(${idx},2)">NEVER</div>
+              <div class="talent-choice${selections[idx]===0?" selected":''}" onclick="selectChoice(${idx},0)">ALWAYS</div>
+              <div class="talent-choice${selections[idx]===1?" selected":''}" onclick="selectChoice(${idx},1)">SOMETIMES</div>
+              <div class="talent-choice${selections[idx]===2?" selected":''}" onclick="selectChoice(${idx},2)">NEVER</div>
             </div>
           `;
           grid.appendChild(div);
@@ -177,19 +180,57 @@
         const always = [], sometimes = [], never = [];
         selections.forEach((sel, idx) => {
           if (!cards[idx] || !cards[idx].title) return;
-          if (sel === 0) always.push(cards[idx].title);
+          if (sel === 0) always.push({ title: cards[idx].title, idx });
           else if (sel === 1) sometimes.push(cards[idx].title);
           else if (sel === 2) never.push(cards[idx].title);
         });
-        const setList = (id, arr) => {
+        const setList = (id, arr, group) => {
           const ul = document.getElementById(id);
           if (!ul) return;
-          ul.innerHTML = arr.length ? arr.map(t => `<li>${t}</li>`).join('') : '<li style="color:#bbb;font-style:italic;">None</li>';
+          if (arr.length) {
+            ul.innerHTML = arr.map(item => {
+              if (group === 'always') {
+                // Down arrow to Sometimes
+                return `<li style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;">${item.title}<button onclick="moveToSometimes(${item.idx})" title='Move to Sometimes' style='background:none;border:none;cursor:pointer;font-size:1.1em;padding:0 0.2em;color:#0077b6;' aria-label='Move to Sometimes'>&#8595;</button></li>`;
+              } else if (group === 'sometimes') {
+                // Up arrow to Always, down arrow to Never
+                return `<li style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;">${typeof item === 'string' ? item : item.title}<span><button onclick="moveToAlways(${typeof item === 'object' ? item.idx : cards.findIndex(c=>c.title===item)})" title='Move to Always' style='background:none;border:none;cursor:pointer;font-size:1.1em;padding:0 0.2em;color:#0077b6;' aria-label='Move to Always'>&#8593;</button><button onclick="moveToNever(${typeof item === 'object' ? item.idx : cards.findIndex(c=>c.title===item)})" title='Move to Never' style='background:none;border:none;cursor:pointer;font-size:1.1em;padding:0 0.2em;color:#b30000;' aria-label='Move to Never'>&#8595;</button></span></li>`;
+              } else if (group === 'never') {
+                // Up arrow to Sometimes
+                return `<li style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;">${typeof item === 'string' ? item : item.title}<button onclick="moveToSometimes(${typeof item === 'object' ? item.idx : cards.findIndex(c=>c.title===item)})" title='Move to Sometimes' style='background:none;border:none;cursor:pointer;font-size:1.1em;padding:0 0.2em;color:#888;' aria-label='Move to Sometimes'>&#8593;</button></li>`;
+              } else {
+                return `<li>${typeof item === 'string' ? item : item.title}</li>`;
+              }
+            }).join('');
+          } else {
+            ul.innerHTML = '<li style="color:#bbb;font-style:italic;">None</li>';
+          }
         };
-        setList('list-always', always);
-        setList('list-sometimes', sometimes);
-        setList('list-never', never);
+        setList('list-always', always, 'always');
+        setList('list-sometimes', sometimes, 'sometimes');
+        setList('list-never', never, 'never');
       }
+
+      window.moveToSometimes = function(idx) {
+        if (typeof idx === 'number') {
+          if (selections[idx] === 0 || selections[idx] === 2) {
+            selections[idx] = 1;
+            renderCards();
+          }
+        }
+      };
+      window.moveToAlways = function(idx) {
+        if (typeof idx === 'number' && selections[idx] === 1) {
+          selections[idx] = 0;
+          renderCards();
+        }
+      };
+      window.moveToNever = function(idx) {
+        if (typeof idx === 'number' && selections[idx] === 1) {
+          selections[idx] = 2;
+          renderCards();
+        }
+      };
       window.selectChoice = function(idx, val) {
         // If the same value is clicked again, clear the selection
         if (selections[idx] === val) {
