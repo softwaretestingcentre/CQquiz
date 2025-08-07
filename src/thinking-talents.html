@@ -274,7 +274,7 @@
           renderCards();
         });
     </script>
-    <div id="analysis-table-container" style="max-width:700px;margin:3em auto 2em auto;display:none;"></div>
+    <!-- Analysis table will be injected into the talents-grid container -->
     <script>
       // Helper: get cognitive style for a card (from card.cognitive_style in JSON)
       function getCognitiveStyle(card) {
@@ -283,26 +283,20 @@
 
       // Render analysis table
       function renderAnalysisTable() {
-        const container = document.getElementById('analysis-table-container');
-        if (!container) return;
-        // Hide and collapse the talents grid
+        // Hide and collapse the talents grid, and inject analysis table in its place
         const grid = document.getElementById('talents-grid');
         if (grid) {
-          grid.style.transition = 'max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s';
-          grid.style.overflow = 'hidden';
-          grid.style.maxHeight = '0';
-          grid.style.opacity = '0';
-          grid.style.pointerEvents = 'none';
+          // Instead of hiding/collapsing the grid, just replace its content
+          grid.style.transition = '';
+          grid.style.overflow = '';
+          grid.style.maxHeight = '';
+          grid.style.opacity = '';
+          grid.style.pointerEvents = '';
         }
         // Get selected cards (ALWAYS group)
         const selected = selections
           .map((sel, idx) => sel === 0 ? { ...cards[idx], idx } : null)
           .filter(Boolean);
-        if (!selected.length) {
-          container.style.display = 'none';
-          container.innerHTML = '';
-          return;
-        }
         // Get all possible cognitive styles from the cards
         const allStylesSet = new Set(cards.map(card => getCognitiveStyle(card)));
         const allStyles = Array.from(allStylesSet).filter(s => s && s !== 'Unknown');
@@ -324,30 +318,43 @@
           .join('');
         // Blind spots summary
         const blindSpotsSummary = blindSpots.length
-          ? `<div style='margin-top:1.2em;'><strong>Blind Spots (no selections):</strong><ul style='margin:0.5em 0 0 1.2em;padding:0;'>${blindSpots.map(style => `<li style='color:#b30000;'>${style}</li>`).join('')}</ul></div>`
+          ? `<div style='margin-bottom:1em;margin-top:1.2em;'><strong>Blind Spots (no selections):</strong><ul style='margin:0.5em 0 0 1.2em;padding:0;'>${blindSpots.map(style => `<li style='color:#b30000;'>${style}</li>`).join('')}</ul></div>`
           : '';
-        container.innerHTML = `
-          <h2 style='text-align:center;margin-bottom:1em;color:#0077b6;'>Analysis of Your Selections</h2>
-          <table style='width:100%;border-collapse:collapse;margin-bottom:1.2em;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px #0001;'>
-            <thead>
-              <tr style='background:#f4f8fb;'>
-                <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>Talent</th>
-                <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>Cognitive Style</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${rows}
-            </tbody>
-          </table>
-          <div style='margin-bottom:1em;'>
-            <strong>Number of selections per cognitive style:</strong>
-            <ul style='margin:0.5em 0 0 1.2em;padding:0;'>
-              ${styleSummary}
-            </ul>
-          </div>
-          ${blindSpotsSummary}
-        `;
-        container.style.display = '';
+        // Inject analysis table into the talents-grid container
+        if (grid) {
+          grid.innerHTML = `
+            <div id='analysis-table-container' style='width:100%;max-width:700px;margin:0 auto 2em auto;'>
+              <h2 style='text-align:center;margin-bottom:1em;color:#0077b6;'>Analysis of Your Selections</h2>
+              <table style='width:100%;border-collapse:collapse;margin-bottom:1.2em;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px #0001;'>
+                <thead>
+                  <tr style='background:#f4f8fb;'>
+                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>Talent</th>
+                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>Cognitive Style</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rows}
+                </tbody>
+              </table>
+              <div style='margin-bottom:1em;'>
+                <strong>Number of selections per cognitive style:</strong>
+                <ul style='margin:0.5em 0 0 1.2em;padding:0;'>
+                  ${styleSummary}
+                </ul>
+              </div>
+              ${blindSpotsSummary}
+              <div style='margin-bottom:1em;'>
+                <strong>Key:</strong>
+                <ul style='margin:0.5em 0 0 1.2em;padding:0;font-style:italic;'>
+                  <li style='color:#0077b6;'>Analytic - Concerned with data, facts, numbers, being "logical" and rational</li>
+                  <li style='color:#0077b6;'>Innovative - Concerned with the future, newness, possibilities, strategy, "big picture"</li>
+                  <li style='color:#0077b6;'>Procedural - Concerned with process, operations, logistics, tactics</li>
+                  <li style='color:#0077b6;'>Relational - Concerned with feelings, morale, teamwork, development of people</li>
+                </ul>
+              </div>
+            </div>
+          `;
+        }
       }
 
       // Add click handler for Analysis button
