@@ -312,8 +312,9 @@
         const rows = selected.map(card =>
           `<tr><td style='padding:0.4em 1em;border:1px solid #ccc;'>${card.title}</td><td style='padding:0.4em 1em;border:1px solid #ccc;'>${getCognitiveStyle(card)}</td></tr>`
         ).join('');
-        // Style count summary
+        // Style count summary, sorted by count descending
         const styleSummary = Object.entries(styleCounts)
+          .sort((a, b) => b[1] - a[1])
           .map(([style, count]) => `<li style='margin-bottom:0.2em;'><strong>${style}:</strong> ${count}</li>`)
           .join('');
         // Blind spots summary
