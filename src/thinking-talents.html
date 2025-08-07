@@ -122,9 +122,15 @@
       <p>The thinking talent self-assessment works like a card game. You will see that each thinking-talent card has a label at the bottom that reads "ALWAYS-SOMETIMES-NEVER".</p>
       <p>As you read the cards that follow, click a label to select or deselect it. The first is for cards that describe: "This ALWAYS gives me energy". The second is for cards that describe: "This SOMETIMES gives me energy". The third is for cards that describe: "This NEVER gives me energy".</p>
       <p>As you go through the cards, thinking of all areas of your life, they will be listed on the right of the page.</p>
-      <p>Once you have sorted all the talents into these three categories, go to the "ALWAYS" group and edit it down to the five to eight strongest talents. If you have more than eight, ask yourself which ones have always been true for you and always will be true for you; eliminate those that aren't quite as strong. If you have fewer than five, go to the "SOMETIMES" group and add the strongest ones there to the "ALWAYS" group until you have five. You may have talents in your "ALWAYS" group that you think of as irrelevant to your work, but if they fit the above criteria, please consider them thinking talents anyway. The five to eight cards remaining in the "ALWAYS" group will most accurately describe what you consider to be your dominant thinking talents.</p>
       <p>There is no way you can be wrong. As your awareness of thinking talents increases, you'll recognize things in yourself you never noticed before, so over time you might need to reconsider some of your choices. As your understanding grows, you can always change your mind.</p>
       <p>In the future, when you have a breakthrough in your thinking, complete a task well, or have an experience that makes you feel fully alive, take a minute to reflect on what thinking talents you just used. It's also useful to notice how your talents show up for you in different domains of life: work, exercise, family, hobbies, or with different people. Through this broad spectrum of observations, you will collect insights that will be the optimal guide for using your thinking talents well.</p>
+      <div class="shadow" style="background:#f5f5f5ab;border:1.2px solid #222;border-radius:12px;padding:1.2em 1.2em 1.2em 1.2em;margin:2em;font-size:small">
+      <h3>SHADOW ATTRIBUTES</h3>
+      <p>Some people have difficulty identifying their thinking talents, because as a society we have been conditioned to focus attention on fixing our deficits rather than maximizing our strengths. Most training programs emphasize weaknesses that need to be improved. Furthermore, some cultures, religions, and family traditions consider modesty a virtue, thereby eclipsing the ability to even admit one's talents.</p>
+      <p>Therefore, we have developed an additional lens we call the "shadow attribute", to make it easier to recognize a talent. It's a way of understanding what the hidden talent is behind particular behaviors. For instance, the shadow attribute for optimism is "cheerleading." Jamie, no matter how bad things got, always cheered other people on, to the point where they rolled their eyes and said she was denying reality.</p>
+      <p>The shadow attribute characteristically shows up when a talent is rough, excessive, or displayed in an unconstructive way. In fact, once Jamie recognized this as a shadow attribute of optimism, she learned the best time and way for the talent to shine. This is a very different outcome than if she had just thought of the opposite of optimism, which is pessimism. The value of recognizing the shadow attribute is that it can lead you to the hidden thinking talent that waits to be identified and developed.</p>
+      <p>The cards show the shadow attribute of each thinking talent. Review the cards, scanning for any attribute that stands out as very familiar. Decide if the associated thinking talent should be in the "ALWAYS" pile you created from the previous assessment.</p>
+      </div>
     </div>
     <div style="display: flex; align-items: flex-start;">
       <div class="talents-grid" id="talents-grid">
@@ -144,6 +150,11 @@
           <strong style="color:#b30000;">Never</strong>
           <ul id="list-never" style="min-height:2em;margin:0.3em 0 0.7em 1.1em;padding:0;font-size:1em;"></ul>
         </div>
+        <p>Once you have sorted all the talents into these three categories, go to the "ALWAYS" group and edit it down to the five to eight strongest talents.</p>
+        <p>If you have more than eight, ask yourself which ones have always been true for you and always will be true for you; eliminate those that aren't quite as strong.</p>
+        <p>If you have fewer than five, go to the "SOMETIMES" group and add the strongest ones there to the "ALWAYS" group until you have five.</p>
+        <p>You may have talents in your "ALWAYS" group that you think of as irrelevant to your work, but if they fit the above criteria, please consider them thinking talents anyway.</p>
+        <p>The five to eight cards remaining in the "ALWAYS" group will most accurately describe what you consider to be your dominant thinking talents.</p>
       </aside>
     </div>
     <!-- Calculating message removed -->
@@ -209,6 +220,16 @@
         setList('list-always', always, 'always');
         setList('list-sometimes', sometimes, 'sometimes');
         setList('list-never', never, 'never');
+
+        // Highlight Always list background based on count
+        const alwaysUl = document.getElementById('list-always');
+        if (alwaysUl) {
+          if (always.length >= 5 && always.length <= 8) {
+            alwaysUl.style.background = '#d4f8d4'; // light green
+          } else {
+            alwaysUl.style.background = '#fffbe6'; // light yellow
+          }
+        }
       }
 
       window.moveToSometimes = function(idx) {
