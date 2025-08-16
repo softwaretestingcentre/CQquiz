@@ -164,6 +164,13 @@
     </div>
     <!-- Calculating message removed -->
     <script>
+      // Load talents data for analysis table
+      window._talentsData = null;
+      fetch('thinking-talents.json')
+        .then(r => r.json())
+        .then(data => {
+          window._talentsData = data;
+        });
       let cards = [];
       let selections = Array(35).fill(null);
 
@@ -312,6 +319,11 @@
 
       // Render analysis table
       function renderAnalysisTable() {
+        // Helper to get talent data
+        function getTalentData(title) {
+          if (!window._talentsData) return null;
+          return window._talentsData[title] || null;
+        }
         // Hide and collapse the talents grid, and inject analysis table in its place
         const grid = document.getElementById('talents-grid');
         if (grid) {
@@ -339,10 +351,18 @@
         });
         // Find blind spots (styles with no selections)
         const blindSpots = allStyles.filter(style => !styleCounts[style]);
-        // Table rows
-        const rows = selected.map(card =>
-          `<tr><td style='padding:0.4em 1em;border:1px solid #ccc;'>${card.title}</td><td style='padding:0.4em 1em;border:1px solid #ccc;'>${getCognitiveStyle(card)}</td></tr>`
-        ).join('');
+        // Table rows with new columns
+        const rows = selected.map(card => {
+          const t = getTalentData(card.title);
+          const lights = t && t.lights_you_up ? t.lights_you_up.map(s => `<li>${s}</li>`).join('') : '';
+          const burns = t && t.burns_you_out ? t.burns_you_out.map(s => `<li>${s}</li>`).join('') : '';
+          return `<tr>
+            <td style='padding:0.4em 1em;border:1px solid #ccc;'>${card.title}</td>
+            <td style='padding:0.4em 1em;border:1px solid #ccc;'>${getCognitiveStyle(card)}</td>
+            <td style='padding:0.4em 1em;border:1px solid #ccc;'><ul style='margin:0.2em 0 0.2em 1.2em;padding:0;'>${lights}</ul></td>
+            <td style='padding:0.4em 1em;border:1px solid #ccc;'><ul style='margin:0.2em 0 0.2em 1.2em;padding:0;'>${burns}</ul></td>
+          </tr>`;
+        }).join('');
         // Style count summary, sorted by count descending, excluding 'All'
         const styleSummary = Object.entries(styleCounts)
           .filter(([style]) => style !== 'All')
@@ -370,13 +390,15 @@
         // Inject analysis table into the talents-grid container
         if (grid) {
           grid.innerHTML = `
-            <div id='analysis-table-container' style='width:100%;max-width:700px;margin:0 auto 2em auto;'>
+            <div id='analysis-table-container' style='width:100%;margin:0 auto 2em auto;'>
               <h2 style='text-align:center;margin-bottom:1em;color:#0077b6;'>Analysis of Your Selections</h2>
               <table style='width:100%;border-collapse:collapse;margin-bottom:1.2em;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px #0001;'>
                 <thead>
                   <tr style='background:#f4f8fb;'>
-                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>Talent</th>
-                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>Cognitive Style</th>
+                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>🎴 Talent</th>
+                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>🧠 Cognitive Style</th>
+                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>✨ What lights you up</th>
+                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>🔥 What burns you out</th>
                   </tr>
                 </thead>
                 <tbody>

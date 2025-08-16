@@ -1,0 +1,353 @@
+{
+  "Adapting": {
+    "lights_you_up": [
+      "Helping when there are many balls to juggle or plans go awry.",
+      "When there is rapid change happening."
+    ],
+    "burns_you_out": [
+      "When others are inflexible.",
+      "Long-term plans or routine."
+    ]
+  },
+  "Believing": {
+    "lights_you_up": [
+      "When there is a strong sense of purpose.",
+      "When you can make decisions based on your values."
+    ],
+    "burns_you_out": [
+      "People who don’t know where they stand.",
+      "Having to compromise your values."
+    ]
+  },
+  "Collecting": {
+    "lights_you_up": [
+      "Acquiring, compiling, and filing away things.",
+      "Collecting data, facts, or information."
+    ],
+    "burns_you_out": [
+      "Letting go of what is no longer needed.",
+      "Lack of organization."
+    ]
+  },
+  "Connection": {
+    "lights_you_up": [
+      "Making connections between things or ideas.",
+      "Linking people to one another."
+    ],
+    "burns_you_out": [
+      "Thinking linearly.",
+      "Conflict."
+    ]
+  },
+  "Creating Intimacy": {
+    "lights_you_up": [
+      "Teaming with others long-term.",
+      "Consistent one-on-one connection with others."
+    ],
+    "burns_you_out": [
+      "Meeting and greeting new people in casual settings.",
+      "Hectic schedules that don’t allow for deeper connection."
+    ]
+  },
+  "Enrolling": {
+    "lights_you_up": [
+      "Meeting new people.",
+      "Looking for chances to sell existing others."
+    ],
+    "burns_you_out": [
+      "Maintaining close relationships over time.",
+      "Isolation or routine in relationships."
+    ]
+  },
+  "Equalizing": {
+    "lights_you_up": [
+      "Creating and applying rules and regulations to maximize fairness.",
+      "Making expectations explicit and consistent."
+    ],
+    "burns_you_out": [
+      "Unfair or special treatment.",
+      "Changing guidelines."
+    ]
+  },
+  "Feeling for Others": {
+    "lights_you_up": [
+      "Demonstrating emotional care for someone.",
+      "Anticipating others’ needs and feelings."
+    ],
+    "burns_you_out": [
+      "Being around negative feelings or pessimistic people.",
+      "Too much communication (email, text) when you can’t sense the other person’s emotions."
+    ]
+  },
+  "Fixing It": {
+    "lights_you_up": [
+      "Identifying or anticipating what might go wrong and fixing or averting it—people, situations, or things.",
+      "Rescuing or saving people, things, or situations."
+    ],
+    "burns_you_out": [
+      "When you can see what’s wrong and can’t fix it.",
+      "When others don’t want you to help—for instance, when they want to learn to do it themselves."
+    ]
+  },
+  "Focusing": {
+    "lights_you_up": [
+      "Uninterrupted freedom to concentrate on a goal with timelines.",
+      "Keeping others on point."
+    ],
+    "burns_you_out": [
+      "Being interrupted or having to multitask.",
+      "When purpose, task, deadlines are not clearly defined or understood."
+    ]
+  },
+  "Get to Action": {
+    "lights_you_up": [
+      "Spurring others or self to talk or take action.",
+      "Making something happen as soon as possible: short timelines."
+    ],
+    "burns_you_out": [
+      "Indecision or meetings without clear goals.",
+      "Contemplation and analysis rather than action."
+    ]
+  },
+  "Goal-Setting": {
+    "lights_you_up": [
+      "Defining and tracking daily concrete goals to work toward.",
+      "Big targets and challenging goals and assignments."
+    ],
+    "burns_you_out": [
+      "No clear or specific ways to measure progress.",
+      "Time off or work that is not challenging."
+    ]
+  },
+  "Having Confidence": {
+    "lights_you_up": [
+      "Autonomy of action and decision.",
+      "Calming challenging situations with employees or customers."
+    ],
+    "burns_you_out": [
+      "Being in a position where you have to ask for help.",
+      "Being told what to say or do."
+    ]
+  },
+  "Humor": {
+    "lights_you_up": [
+      "Lightening otherwise-tense moments and putting others at ease.",
+      "Using humor in written communication or speeches."
+    ],
+    "burns_you_out": [
+      "Using humor as a defense strategy to protect yourself from others or your own emotions.",
+      "Highly analytic situations or those where humor is seen as a challenge to authority."
+    ]
+  },
+  "Including": {
+    "lights_you_up": [
+      "Finding ways to make others feel a part of the group.",
+      "Welcoming new people."
+    ],
+    "burns_you_out": [
+      "Firing people, sharing bad news or difficult information.",
+      "Excluding someone from a situation where they would be useful."
+    ]
+  },
+  "Innovation": {
+    "lights_you_up": [
+      "Creating new processes or products.",
+      "Figuring out all the new ways to accomplish something or keep them interesting."
+    ],
+    "burns_you_out": [
+      "Routine and standardized ways of doing things.",
+      "Looking back at how something was done before."
+    ]
+  },
+  "Love of Learning": {
+    "lights_you_up": [
+      "Continual learning.",
+      "Sharing what you are learning."
+    ],
+    "burns_you_out": [
+      "Leapfrogging from learning thing to thing without any depth.",
+      "Having to do routine things when no learning is involved."
+    ]
+  },
+  "Loving Ideas": {
+    "lights_you_up": [
+      "Having a new idea, concept, or theory.",
+      "Being involved at the beginning of something."
+    ],
+    "burns_you_out": [
+      "Having no place to contribute your ideas.",
+      "Coming in at the middle or end of a project, or having to suppress your ideas or give input on how it could be done."
+    ]
+  },
+  "Making Order": {
+    "lights_you_up": [
+      "Lining things up in a logical way.",
+      "When many things are going on at the same time and you get to create a sequence."
+    ],
+    "burns_you_out": [
+      "When your capacity to align different variables isn’t needed or valued.",
+      "For example, when a system developed and you cannot offer input.",
+      "When you cannot make order out of chaos or confusion."
+    ]
+  },
+  "Mentoring": {
+    "lights_you_up": [
+      "Helping others grow their potential.",
+      "Guiding people through new situations."
+    ],
+    "burns_you_out": [
+      "Trying to help a struggling employee when it’s appropriate to give up.",
+      "When there is no opportunity to grow someone. For example, if the focus is only on the bottom line and not on development of people."
+    ]
+  },
+  "Optimism": {
+    "lights_you_up": [
+      "Finding ways to recognize what’s right about a challenging situation.",
+      "Painting an exciting picture of the future."
+    ],
+    "burns_you_out": [
+      "Being around skepticism.",
+      "Having to recognize pitfalls, problems, or give negative feedback."
+    ]
+  },
+  "Particularize": {
+    "lights_you_up": [
+      "Recognizing and sharing what is unique about someone.",
+      "Tailoring something to meet the specific needs of someone else."
+    ],
+    "burns_you_out": [
+      "When a one-size-fits-all or standardized approach is required.",
+      "Generalizations about people."
+    ]
+  },
+  "Peacemaking": {
+    "lights_you_up": [
+      "Resolving conflicts or arguments.",
+      "Finding common ground or consensus."
+    ],
+    "burns_you_out": [
+      "Unresolved conflict.",
+      "Standing up for your own needs."
+    ]
+  },
+  "Precision": {
+    "lights_you_up": [
+      "Setting up predictable routines, timelines, and deadlines.",
+      "Maintaining progress and productivity."
+    ],
+    "burns_you_out": [
+      "Situations that require flexibility, instinct; unpredictable changes.",
+      "Unable to question how or why things are done."
+    ]
+  },
+  "Reliability": {
+    "lights_you_up": [
+      "Living up to commitments.",
+      "Delivering on time—every time."
+    ],
+    "burns_you_out": [
+      "Others’ excuses and rationalizations for lack of performance or not meeting expectations.",
+      "Being responsible for others who don’t honor your contribution."
+    ]
+  },
+  "Seeking Excellence": {
+    "lights_you_up": [
+      "Doing the best you can with the least.",
+      "Continual improvement to make things better."
+    ],
+    "burns_you_out": [
+      "Inefficient processes or meetings.",
+      "Having to accept something mediocre or go with the status quo."
+    ]
+  },
+  "Standing Out": {
+    "lights_you_up": [
+      "Doing something for which you know you’ll be recognized.",
+      "Performing in a way that allows you to stand out as having made a difference."
+    ],
+    "burns_you_out": [
+      "When your contribution is not acknowledged.",
+      "Being invisible in a team or group."
+    ]
+  },
+  "Storytelling": {
+    "lights_you_up": [
+      "Bringing ideas to life through story.",
+      "Inspiring others to engage through narratives."
+    ],
+    "burns_you_out": [
+      "Having to think with only facts and figures.",
+      "Thinking only in ‘why’ and ‘how’."
+    ]
+  },
+  "Strategy": {
+    "lights_you_up": [
+      "Finding alternative possibilities and options.",
+      "Anticipating future challenges and their solutions."
+    ],
+    "burns_you_out": [
+      "Shortsightedness.",
+      "Single-mindedness, as in ‘My way or the highway’."
+    ]
+  },
+  "Taking Charge": {
+    "lights_you_up": [
+      "Directing others into action.",
+      "Unifying engagement."
+    ],
+    "burns_you_out": [
+      "Working alone.",
+      "Having no opportunity to lead."
+    ]
+  },
+  "Thinking Ahead": {
+    "lights_you_up": [
+      "Seeing the possible future outcomes of an action or event.",
+      "Helping others overcome fears of the future."
+    ],
+    "burns_you_out": [
+      "People whose thinking is stuck in the past.",
+      "Others’ dismal view of future possibilities."
+    ]
+  },
+  "Thinking Alone": {
+    "lights_you_up": [
+      "Time to think through situations and contemplate pros and cons.",
+      "Solitude to explore what you believe at your own rhythm."
+    ],
+    "burns_you_out": [
+      "Being put on the spot to respond immediately, without advance notice.",
+      "No personal space to mull over a decision."
+    ]
+  },
+  "Thinking Back": {
+    "lights_you_up": [
+      "Setting a historical context for a present problem.",
+      "Recalling how things were done in the past."
+    ],
+    "burns_you_out": [
+      "When others don’t learn from what’s important in the past.",
+      "When history and time is new without considering what worked before."
+    ]
+  },
+  "Thinking Logically": {
+    "lights_you_up": [
+      "Thinking about and explaining why something is the way it is.",
+      "Exposing holes in partial logic."
+    ],
+    "burns_you_out": [
+      "Intuitive action.",
+      "Hidden or partial logic."
+    ]
+  },
+  "Wanting to Win": {
+    "lights_you_up": [
+      "Competing against someone else.",
+      "Having specific targets to measure who wins."
+    ],
+    "burns_you_out": [
+      "\"Everyone wins\" philosophy.",
+      "Having no way to prove you can be the best."
+    ]
+  }
+}
