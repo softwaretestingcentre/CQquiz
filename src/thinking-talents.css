@@ -1,3 +1,46 @@
+/* Chapter Summary Table Styles */
+.chapter-summary-section {
+  margin: 2.5em auto 2em auto;
+  max-width: 900px;
+  background: #f8fafc;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 2em 1.5em 2em 1.5em;
+}
+.chapter-summary-heading {
+  text-align: center;
+  color: #0077b6;
+  font-size: 1.3em;
+  margin-bottom: 1.2em;
+}
+.chapter-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px #0001;
+  margin: 0 auto;
+}
+.chapter-summary-table th, .chapter-summary-table td {
+  border: 1px solid #cce5ff;
+  padding: 1em 1em 1em 1em;
+  vertical-align: top;
+  font-size: 1.05em;
+}
+.chapter-summary-table th {
+  background: #e3f2fd;
+  color: #0056b3;
+  font-weight: bold;
+  text-align: left;
+}
+.chapter-summary-table tr:nth-child(even) td {
+  background: #f4f8fb;
+}
+.chapter-summary-table ul {
+  margin: 0.4em 0 0.4em 1.2em;
+  padding: 0;
+}
 /* Thinking Talents Quiz Styles */
 
 .nav-bar {
