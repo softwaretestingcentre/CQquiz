@@ -326,14 +326,16 @@
         const selected = selections
           .map((sel, idx) => sel === 0 ? { ...cards[idx], idx } : null)
           .filter(Boolean);
-        // Get all possible cognitive styles from the cards
-        const allStylesSet = new Set(cards.map(card => getCognitiveStyle(card)));
-        const allStyles = Array.from(allStylesSet).filter(s => s && s !== 'Unknown');
-        // Count by cognitive style
+  // Get all possible cognitive styles from the cards, excluding 'All'
+  const allStylesSet = new Set(cards.map(card => getCognitiveStyle(card)));
+  const allStyles = Array.from(allStylesSet).filter(s => s && s !== 'Unknown' && s !== 'All');
+        // Count by cognitive style, excluding 'All'
         const styleCounts = {};
         selected.forEach(card => {
           const style = getCognitiveStyle(card);
-          styleCounts[style] = (styleCounts[style] || 0) + 1;
+          if (style !== 'All') {
+            styleCounts[style] = (styleCounts[style] || 0) + 1;
+          }
         });
         // Find blind spots (styles with no selections)
         const blindSpots = allStyles.filter(style => !styleCounts[style]);
@@ -341,15 +343,30 @@
         const rows = selected.map(card =>
           `<tr><td style='padding:0.4em 1em;border:1px solid #ccc;'>${card.title}</td><td style='padding:0.4em 1em;border:1px solid #ccc;'>${getCognitiveStyle(card)}</td></tr>`
         ).join('');
-        // Style count summary, sorted by count descending
+        // Style count summary, sorted by count descending, excluding 'All'
         const styleSummary = Object.entries(styleCounts)
+          .filter(([style]) => style !== 'All')
           .sort((a, b) => b[1] - a[1])
           .map(([style, count]) => `<li style='margin-bottom:0.2em;'><strong>${style}:</strong> ${count}</li>`)
           .join('');
         // Blind spots summary
-        const blindSpotsSummary = blindSpots.length
-          ? `<div style='margin-bottom:1em;margin-top:1.2em;'><strong>Blind Spots (no selections):</strong><ul style='margin:0.5em 0 0 1.2em;padding:0;'>${blindSpots.map(style => `<li style='color:#b30000;'>${style}</li>`).join('')}</ul></div>`
-          : '';
+        let blindSpotsSummary = '';
+        if (blindSpots.length) {
+          blindSpotsSummary = `
+            <div style='margin-bottom:1em;margin-top:1.2em;'>
+              <strong>Blind Spots (no selections):</strong>
+              <ul style='margin:0.5em 0 0 1.2em;padding:0;'>
+                ${blindSpots.map(style => `<li style='color:#b30000;'>${style}</li>`).join('')}
+              </ul>
+            </div>
+            <div style='background:#fffbe6;border:1px solid #ffe066;border-radius:8px;padding:1.1em 1.3em 1.1em 1.3em;margin-bottom:1.2em;'>
+              <h3 style='margin-top:0;margin-bottom:0.7em;font-size:1.1em;color:#b30000;'>Discovering Your Blind Spots</h3>
+              <p style='margin-bottom:0.7em;'>Equally important as knowing your mind’s sweet spots—the talents you have, the talents that are hidden, and how they combine—is recognizing your mind’s blind spots, which are the talents you lack. People worry and stress in the quadrants where they have blind spots. If you don’t have “feeling for others,” for example, you may worry about how people will react to you. If you don’t have “making order,” you worry because you have trouble organizing and prioritizing. If you don’t have “focusing,” you’re concerned about being easily distracted. We seem to know intuitively we are missing a natural ease and excellence of thinking in these areas, even if we fail to recognize it consciously. Conversely, you don’t worry in the domains where you have the necessary thinking talents, because you innately trust your capacity.</p>
+              <p style='margin-bottom:0.7em;'>Two common assumptions cause us to deny our blind spots. The first is the belief that we should all be competent at everything. The second is the belief that we should be able to think through and solve any issue independently. Both of these erroneous beliefs can lead to what I call “skilled mediocrity,” and they point to the inescapable fact that we need one another. Blind spots reveal where collaboration is necessary so you can give and get the support you need to produce excellence.</p>
+              <p style='margin-bottom:0;'>Looking back to the thinking-talents map, notice if you have any quadrants that are devoid of thinking talents. These are your blind spots. Also notice which thinking talents are missing, because they too may be blind spots in certain situations.</p>
+            </div>
+          `;
+        }
         // Inject analysis table into the talents-grid container
         if (grid) {
           grid.innerHTML = `
@@ -367,13 +384,6 @@
                 </tbody>
               </table>
               <div style='margin-bottom:1em;'>
-                <strong>Number of selections per cognitive style:</strong>
-                <ul style='margin:0.5em 0 0 1.2em;padding:0;'>
-                  ${styleSummary}
-                </ul>
-              </div>
-              ${blindSpotsSummary}
-              <div style='margin-bottom:1em;'>
                 <strong>Key:</strong>
                 <ul style='margin:0.5em 0 0 1.2em;padding:0;font-style:italic;'>
                   <li style='color:#0077b6;'>Analytic - Concerned with data, facts, numbers, being "logical" and rational</li>
@@ -382,6 +392,13 @@
                   <li style='color:#0077b6;'>Relational - Concerned with feelings, morale, teamwork, development of people</li>
                 </ul>
               </div>
+              <div style='margin-bottom:1em;'>
+                <strong>Number of selections per cognitive style:</strong>
+                <ul style='margin:0.5em 0 0 1.2em;padding:0;'>
+                  ${styleSummary}
+                </ul>
+              </div>
+              ${blindSpotsSummary}
             </div>
           `;
         }
