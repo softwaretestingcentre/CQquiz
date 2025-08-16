@@ -5,6 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thinking Talents</title>
     <style>
+      .nav-bar {
+        width: 90vw;
+        min-width: 90%;
+        background: #fffc66;
+        border-bottom: 1.5px solid #ffe066;
+        padding: 0.5em 0 0.5em 0.5em;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 1px 4px #0001;
+        display: flex;
+        align-items: center;
+        gap: 1.5em;
+      }
+      .nav-link {
+        color: #111;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.08em;
+        padding: 0.2em 0.7em;
+        border-radius: 6px;
+        transition: background 0.15s;
+      }
+      .nav-link.active {
+        background: #fffb00;
+      }
+      .reset-btn {
+        margin-left: auto;
+        margin-right: 1em;
+        background: #fffbe6;
+        color: #b30000;
+        border: 1.5px solid #ffe066;
+        border-radius: 7px;
+        padding: 0.4em 1.2em;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 2px 6px #0001;
+        transition: background 0.15s;
+      }
+      .summary-aside {
+        min-width: 260px;
+        max-width: 320px;
+        margin-left: 2.5em;
+        padding: 1.2em 1.2em 1.2em 1.2em;
+        background: #f4f8fb;
+        border-radius: 16px;
+        border: 1.5px solid #cce5ff;
+        box-shadow: 0 2px 8px #0001;
+        top: 2em;
+        position: sticky;
+      }
+      .summary-heading {
+        font-size: 1.2em;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 1.2em;
+        color: #0077b6;
+      }
+      .summary-btn-container {
+        text-align: center;
+        margin-top: 0.7em;
+      }
+      .summary-btn {
+        background: #0077b6;
+        color: #fff;
+        border: none;
+        border-radius: 7px;
+        padding: 0.6em 1.5em;
+        font-size: 1.08em;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 2px 6px #0001;
+        transition: background 0.15s;
+      }
+      .summary-group {
+        margin-bottom: 1.2em;
+      }
+      .summary-group strong.always {
+        color: #0056b3;
+      }
+      .summary-group strong.sometimes {
+        color: #888;
+      }
+      .summary-group strong.never {
+        color: #b30000;
+      }
+      .summary-list {
+        min-height: 2em;
+        margin: 0.3em 0 0.7em 1.1em;
+        padding: 0;
+        font-size: 1em;
+      }
+      .summary-list-empty {
+        color: #bbb;
+        font-style: italic;
+      }
+      .summary-list-green {
+        background: #d4f8d4;
+      }
+      .summary-list-yellow {
+        background: #fffbe6;
+      }
+      .shadow {
+        background: #888;
+        border: 1.2px solid #222;
+        border-radius: 12px;
+        padding: 1.2em 1.2em 1.2em 1.2em;
+        margin: 2em;
+        font-size: small;
+      }
+      .talent-shadow-bar {
+        width: 100%;
+        background: #888;
+        margin: 0.5em 0 0.7em 0;
+        padding: 0.5em 0.7em 0.5em 0.7em;
+        border-radius: 7px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+      .talent-shadow-bar span {
+        color: #fff;
+        font-style: italic;
+        font-size: 1em;
+        font-weight: bold;
+      }
+      .summary-arrow-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1em;
+        padding: 0 0.2em;
+        color: #0077b6;
+      }
+      .summary-arrow-btn.never {
+        color: #b30000;
+      }
+      .summary-arrow-btn.sometimes {
+        color: #888;
+      }
       body {
         font-family: Arial, sans-serif;
         margin: 2em;
@@ -103,72 +242,237 @@
         color: #0077b6;
         margin-top: 2em;
       }
+      /* Analysis Table Styles */
+      .analysis-table-container {
+        width: 100%;
+        margin: 0 auto 2em auto;
+      }
+      .analysis-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.2em;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px #0001;
+      }
+      .analysis-table th {
+        padding: 0.5em 1em;
+        border: 1px solid #ccc;
+        text-align: left;
+        background: #f4f8fb;
+      }
+      .analysis-table td {
+        padding: 0.4em 1em;
+        border: 1px solid #ccc;
+        vertical-align: top;
+      }
+      .analysis-table ul {
+        margin: 0.2em 0 0.2em 1.2em;
+        padding: 0;
+      }
+      .analysis-key-list {
+        margin: 0.5em 0 0 1.2em;
+        padding: 0;
+        font-style: italic;
+      }
+      .analysis-style-summary {
+        margin: 0.5em 0 0 1.2em;
+        padding: 0;
+      }
+      .analysis-blindspots-list {
+        margin: 0.5em 0 0 1.2em;
+        padding: 0;
+      }
+      .analysis-blindspots-section {
+        margin-bottom: 1em;
+        margin-top: 1.2em;
+      }
+      .analysis-blindspots-explainer {
+        background: #fffbe6;
+        border: 1px solid #ffe066;
+        border-radius: 8px;
+        padding: 1.1em 1.3em 1.1em 1.3em;
+        margin-bottom: 1.2em;
+      }
+      .analysis-blindspots-explainer h3 {
+        margin-top: 0;
+        margin-bottom: 0.7em;
+        font-size: 1.1em;
+        color: #b30000;
+      }
+      .analysis-blindspot-item {
+        color: #b30000;
+      }
     </style>
   </head>
   <body>
-    <nav style="width:90vw;min-width:90%;background:#fffc66;border-bottom:1.5px solid #ffe066;padding:0.5em 0 0.5em 0.5em;position:relative;z-index:10;box-shadow:0 1px 4px #0001;display:flex;align-items:center;gap:1.5em;">
+    <nav class="nav-bar">
       <strong>COLLABORATIVE INTELLIGENCE</strong>
-      <a href="mind-patterns.html" style="color:#111;text-decoration:none;font-weight:bold;font-size:1.08em;padding:0.2em 0.7em;border-radius:6px;transition:background 0.15s;">Mind Patterns</a>
-      <a href="thinking-talents.html" style="color:#111;text-decoration:none;font-weight:bold;font-size:1.08em;padding:0.2em 0.7em;border-radius:6px;transition:background 0.15s;background:#fffb00;">Thinking Talents</a>
-      <button id="reset-btn" style="margin-left:auto;margin-right:1em;background:#fffbe6;color:#b30000;border:1.5px solid #ffe066;border-radius:7px;padding:0.4em 1.2em;font-size:1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 6px #0001;transition:background 0.15s;">Reset</button>
+      <a href="mind-patterns.html" class="nav-link">Mind Patterns</a>
+      <a href="thinking-talents.html" class="nav-link active"
+        >Thinking Talents</a
+      >
+      <button id="reset-btn" class="reset-btn">Reset</button>
     </nav>
     <h1>Thinking Talents</h1>
     <div class="intro">
-      <p>Identifying your thinking talents begins with reading through each of the thirty-five talents in the "cards" below. All you need to remember about thinking talents are the following three characteristics:</p>
+      <p>
+        Identifying your thinking talents begins with reading through each of
+        the thirty-five talents in the "cards" below. All you need to remember
+        about thinking talents are the following three characteristics:
+      </p>
       <ul>
-        <li>They are innate ways of thinking. That is, you've always been really good at doing them, even if you never had any specific training, and you tend to use them when faced with challenges.</li>
-        <li>You get natural joy and energy from using your thinking talents, and you don't burn out.</li>
-        <li>You excel in using these talents and enjoy developing capacities with them.</li>
+        <li>
+          They are innate ways of thinking. That is, you've always been really
+          good at doing them, even if you never had any specific training, and
+          you tend to use them when faced with challenges.
+        </li>
+        <li>
+          You get natural joy and energy from using your thinking talents, and
+          you don't burn out.
+        </li>
+        <li>
+          You excel in using these talents and enjoy developing capacities with
+          them.
+        </li>
       </ul>
-      <p>Understanding these aspects will help you distinguish thinking talents from skills, personality traits, or other capacities.</p>
-      <p>The thinking talent self-assessment works like a card game. You will see that each thinking-talent card has a label at the bottom that reads "ALWAYS-SOMETIMES-NEVER".</p>
-      <p>As you read the cards that follow, click a label to select or deselect it. The first is for cards that describe: "This ALWAYS gives me energy". The second is for cards that describe: "This SOMETIMES gives me energy". The third is for cards that describe: "This NEVER gives me energy".</p>
-      <p>As you go through the cards, thinking of all areas of your life, they will be listed on the right of the page.</p>
-      <p>There is no way you can be wrong. As your awareness of thinking talents increases, you'll recognize things in yourself you never noticed before, so over time you might need to reconsider some of your choices. As your understanding grows, you can always change your mind.</p>
-      <p>In the future, when you have a breakthrough in your thinking, complete a task well, or have an experience that makes you feel fully alive, take a minute to reflect on what thinking talents you just used. It's also useful to notice how your talents show up for you in different domains of life: work, exercise, family, hobbies, or with different people. Through this broad spectrum of observations, you will collect insights that will be the optimal guide for using your thinking talents well.</p>
-      <div class="shadow" style="background:#888;border:1.2px solid #222;border-radius:12px;padding:1.2em 1.2em 1.2em 1.2em;margin:2em;font-size:small">
-      <h3>SHADOW ATTRIBUTES</h3>
-      <p>Some people have difficulty identifying their thinking talents, because as a society we have been conditioned to focus attention on fixing our deficits rather than maximizing our strengths. Most training programs emphasize weaknesses that need to be improved. Furthermore, some cultures, religions, and family traditions consider modesty a virtue, thereby eclipsing the ability to even admit one's talents.</p>
-      <p>Therefore, we have developed an additional lens we call the "shadow attribute", to make it easier to recognize a talent. It's a way of understanding what the hidden talent is behind particular behaviors. For instance, the shadow attribute for optimism is "cheerleading." Jamie, no matter how bad things got, always cheered other people on, to the point where they rolled their eyes and said she was denying reality.</p>
-      <p>The shadow attribute characteristically shows up when a talent is rough, excessive, or displayed in an unconstructive way. In fact, once Jamie recognized this as a shadow attribute of optimism, she learned the best time and way for the talent to shine. This is a very different outcome than if she had just thought of the opposite of optimism, which is pessimism. The value of recognizing the shadow attribute is that it can lead you to the hidden thinking talent that waits to be identified and developed.</p>
-      <p>The cards show the shadow attribute of each thinking talent. Review the cards, scanning for any attribute that stands out as very familiar. Decide if the associated thinking talent should be in the "ALWAYS" pile you created from the previous assessment.</p>
+      <p>
+        Understanding these aspects will help you distinguish thinking talents
+        from skills, personality traits, or other capacities.
+      </p>
+      <p>
+        The thinking talent self-assessment works like a card game. You will see
+        that each thinking-talent card has a label at the bottom that reads
+        "ALWAYS-SOMETIMES-NEVER".
+      </p>
+      <p>
+        As you read the cards that follow, click a label to select or deselect
+        it. The first is for cards that describe: "This ALWAYS gives me energy".
+        The second is for cards that describe: "This SOMETIMES gives me energy".
+        The third is for cards that describe: "This NEVER gives me energy".
+      </p>
+      <p>
+        As you go through the cards, thinking of all areas of your life, they
+        will be listed on the right of the page.
+      </p>
+      <p>
+        There is no way you can be wrong. As your awareness of thinking talents
+        increases, you'll recognize things in yourself you never noticed before,
+        so over time you might need to reconsider some of your choices. As your
+        understanding grows, you can always change your mind.
+      </p>
+      <p>
+        In the future, when you have a breakthrough in your thinking, complete a
+        task well, or have an experience that makes you feel fully alive, take a
+        minute to reflect on what thinking talents you just used. It's also
+        useful to notice how your talents show up for you in different domains
+        of life: work, exercise, family, hobbies, or with different people.
+        Through this broad spectrum of observations, you will collect insights
+        that will be the optimal guide for using your thinking talents well.
+      </p>
+      <div
+        class="shadow"
+        style="
+          background: #888;
+          border: 1.2px solid #222;
+          border-radius: 12px;
+          padding: 1.2em 1.2em 1.2em 1.2em;
+          margin: 2em;
+          font-size: small;
+        "
+      >
+        <h3>SHADOW ATTRIBUTES</h3>
+        <p>
+          Some people have difficulty identifying their thinking talents,
+          because as a society we have been conditioned to focus attention on
+          fixing our deficits rather than maximizing our strengths. Most
+          training programs emphasize weaknesses that need to be improved.
+          Furthermore, some cultures, religions, and family traditions consider
+          modesty a virtue, thereby eclipsing the ability to even admit one's
+          talents.
+        </p>
+        <p>
+          Therefore, we have developed an additional lens we call the "shadow
+          attribute", to make it easier to recognize a talent. It's a way of
+          understanding what the hidden talent is behind particular behaviors.
+          For instance, the shadow attribute for optimism is "cheerleading."
+          Jamie, no matter how bad things got, always cheered other people on,
+          to the point where they rolled their eyes and said she was denying
+          reality.
+        </p>
+        <p>
+          The shadow attribute characteristically shows up when a talent is
+          rough, excessive, or displayed in an unconstructive way. In fact, once
+          Jamie recognized this as a shadow attribute of optimism, she learned
+          the best time and way for the talent to shine. This is a very
+          different outcome than if she had just thought of the opposite of
+          optimism, which is pessimism. The value of recognizing the shadow
+          attribute is that it can lead you to the hidden thinking talent that
+          waits to be identified and developed.
+        </p>
+        <p>
+          The cards show the shadow attribute of each thinking talent. Review
+          the cards, scanning for any attribute that stands out as very
+          familiar. Decide if the associated thinking talent should be in the
+          "ALWAYS" pile you created from the previous assessment.
+        </p>
       </div>
     </div>
-    <div style="display: flex; align-items: flex-start;">
+    <div style="display: flex; align-items: flex-start">
       <div class="talents-grid" id="talents-grid">
         <!-- Cards will be rendered here -->
       </div>
-      <aside id="talent-summary" style="min-width:260px;max-width:320px;margin-left:2.5em;padding:1.2em 1.2em 1.2em 1.2em;background:#f4f8fb;border-radius:16px;border:1.5px solid #cce5ff;box-shadow:0 2px 8px #0001;top:2em;position:sticky;">
-        <h2 style="font-size:1.2em;text-align:center;margin-top:0;margin-bottom:1.2em;color:#0077b6;">Your Selections</h2>
-        <div id="analysis-btn-container" style="text-align:center;margin-top:0.7em;display:none;">
-          <button id="analysis-btn" style="background:#0077b6;color:#fff;border:none;border-radius:7px;padding:0.6em 1.5em;font-size:1.08em;font-weight:bold;cursor:pointer;box-shadow:0 2px 6px #0001;transition:background 0.15s;">Analysis</button>
+      <aside id="talent-summary" class="summary-aside">
+        <h2 class="summary-heading">Your Selections</h2>
+        <div id="analysis-btn-container" class="summary-btn-container">
+          <button id="analysis-btn" class="summary-btn">Analysis</button>
         </div>
-        <div style="margin-bottom:1.2em;">
-          <strong style="color:#0056b3;">Always</strong>
-          <ul id="list-always" style="min-height:2em;margin:0.3em 0 0.7em 1.1em;padding:0;font-size:1em;"></ul>
+        <div class="summary-group">
+          <strong class="always">Always</strong>
+          <ul id="list-always" class="summary-list"></ul>
         </div>
-        <div style="margin-bottom:1.2em;">
-          <strong style="color:#888;">Sometimes</strong>
-          <ul id="list-sometimes" style="min-height:2em;margin:0.3em 0 0.7em 1.1em;padding:0;font-size:1em;"></ul>
+        <div class="summary-group">
+          <strong class="sometimes">Sometimes</strong>
+          <ul id="list-sometimes" class="summary-list"></ul>
         </div>
-        <div>
-          <strong style="color:#b30000;">Never</strong>
-          <ul id="list-never" style="min-height:2em;margin:0.3em 0 0.7em 1.1em;padding:0;font-size:1em;"></ul>
+        <div class="summary-group">
+          <strong class="never">Never</strong>
+          <ul id="list-never" class="summary-list"></ul>
         </div>
-        <p>Once you have sorted all the talents into these three categories, go to the "ALWAYS" group and edit it down to the five to eight strongest talents.</p>
-        <p>If you have more than eight, ask yourself which ones have always been true for you and always will be true for you; eliminate those that aren't quite as strong.</p>
-        <p>If you have fewer than five, go to the "SOMETIMES" group and add the strongest ones there to the "ALWAYS" group until you have five.</p>
-        <p>You may have talents in your "ALWAYS" group that you think of as irrelevant to your work, but if they fit the above criteria, please consider them thinking talents anyway.</p>
-        <p>The five to eight cards remaining in the "ALWAYS" group will most accurately describe what you consider to be your dominant thinking talents.</p>
+        <p>
+          Once you have sorted all the talents into these three categories, go
+          to the "ALWAYS" group and edit it down to the five to eight strongest
+          talents.
+        </p>
+        <p>
+          If you have more than eight, ask yourself which ones have always been
+          true for you and always will be true for you; eliminate those that
+          aren't quite as strong.
+        </p>
+        <p>
+          If you have fewer than five, go to the "SOMETIMES" group and add the
+          strongest ones there to the "ALWAYS" group until you have five.
+        </p>
+        <p>
+          You may have talents in your "ALWAYS" group that you think of as
+          irrelevant to your work, but if they fit the above criteria, please
+          consider them thinking talents anyway.
+        </p>
+        <p>
+          The five to eight cards remaining in the "ALWAYS" group will most
+          accurately describe what you consider to be your dominant thinking
+          talents.
+        </p>
       </aside>
     </div>
     <!-- Calculating message removed -->
     <script>
       // Load talents data for analysis table
       window._talentsData = null;
-      fetch('thinking-talents.json')
-        .then(r => r.json())
-        .then(data => {
+      fetch("thinking-talents.json")
+        .then((r) => r.json())
+        .then((data) => {
           window._talentsData = data;
         });
       let cards = [];
@@ -177,7 +481,7 @@
       // Load selections from localStorage if present
       function loadSelections() {
         try {
-          const saved = localStorage.getItem('thinkingTalentsSelections');
+          const saved = localStorage.getItem("thinkingTalentsSelections");
           if (saved) {
             const arr = JSON.parse(saved);
             if (Array.isArray(arr) && arr.length === 35) {
@@ -190,7 +494,10 @@
       // Save selections to localStorage
       function saveSelections() {
         try {
-          localStorage.setItem('thinkingTalentsSelections', JSON.stringify(selections));
+          localStorage.setItem(
+            "thinkingTalentsSelections",
+            JSON.stringify(selections)
+          );
         } catch (e) {}
       }
 
@@ -202,18 +509,24 @@
           const div = document.createElement("div");
           div.className = "talent-card";
           div.innerHTML = `
-            <div style="font-size:0.95em;color:#888;letter-spacing:0.08em;margin-bottom:0.2em;">THINKING TALENTS</div>
+            <div class="talent-card-label">THINKING TALENTS</div>
             <div class="talent-title">${card.title}</div>
             <div class="talent-icon">${card.icon || ""}</div>
             <div class="talent-question">${card.question}</div>
             <div class="talent-desc">${card.desc}</div>
-            <div class="talent-shadow-bar" style="width:100%;background:#888;margin:0.5em 0 0.7em 0;padding:0.5em 0.7em 0.5em 0.7em;border-radius:7px;box-sizing:border-box;text-align:center;">
-              <span style="color:#fff;font-style:italic;font-size:1em;font-weight:bold;">${card.shadow || ''}</span>
+            <div class="talent-shadow-bar">
+              <span>${card.shadow || ""}</span>
             </div>
             <div class="talent-choices">
-              <div class="talent-choice${selections[idx]===0?" selected":''}" onclick="selectChoice(${idx},0)">ALWAYS</div>
-              <div class="talent-choice${selections[idx]===1?" selected":''}" onclick="selectChoice(${idx},1)">SOMETIMES</div>
-              <div class="talent-choice${selections[idx]===2?" selected":''}" onclick="selectChoice(${idx},2)">NEVER</div>
+              <div class="talent-choice${
+                selections[idx] === 0 ? " selected" : ""
+              }" onclick="selectChoice(${idx},0)">ALWAYS</div>
+              <div class="talent-choice${
+                selections[idx] === 1 ? " selected" : ""
+              }" onclick="selectChoice(${idx},1)">SOMETIMES</div>
+              <div class="talent-choice${
+                selections[idx] === 2 ? " selected" : ""
+              }" onclick="selectChoice(${idx},2)">NEVER</div>
             </div>
           `;
           grid.appendChild(div);
@@ -223,7 +536,9 @@
       }
 
       function updateSummary() {
-        const always = [], sometimes = [], never = [];
+        const always = [],
+          sometimes = [],
+          never = [];
         selections.forEach((sel, idx) => {
           if (!cards[idx] || !cards[idx].title) return;
           if (sel === 0) always.push({ title: cards[idx].title, idx });
@@ -234,44 +549,69 @@
           const ul = document.getElementById(id);
           if (!ul) return;
           if (arr.length) {
-            ul.innerHTML = arr.map(item => {
-              if (group === 'always') {
-                // Down arrow to Sometimes
-                return `<li style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;">${item.title}<button onclick="moveToSometimes(${item.idx})" title='Move to Sometimes' style='background:none;border:none;cursor:pointer;font-size:1.1em;padding:0 0.2em;color:#0077b6;' aria-label='Move to Sometimes'>&#8595;</button></li>`;
-              } else if (group === 'sometimes') {
-                // Up arrow to Always, down arrow to Never
-                return `<li style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;">${typeof item === 'string' ? item : item.title}<span><button onclick="moveToAlways(${typeof item === 'object' ? item.idx : cards.findIndex(c=>c.title===item)})" title='Move to Always' style='background:none;border:none;cursor:pointer;font-size:1.1em;padding:0 0.2em;color:#0077b6;' aria-label='Move to Always'>&#8593;</button><button onclick="moveToNever(${typeof item === 'object' ? item.idx : cards.findIndex(c=>c.title===item)})" title='Move to Never' style='background:none;border:none;cursor:pointer;font-size:1.1em;padding:0 0.2em;color:#b30000;' aria-label='Move to Never'>&#8595;</button></span></li>`;
-              } else if (group === 'never') {
-                // Up arrow to Sometimes
-                return `<li style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;">${typeof item === 'string' ? item : item.title}<button onclick="moveToSometimes(${typeof item === 'object' ? item.idx : cards.findIndex(c=>c.title===item)})" title='Move to Sometimes' style='background:none;border:none;cursor:pointer;font-size:1.1em;padding:0 0.2em;color:#888;' aria-label='Move to Sometimes'>&#8593;</button></li>`;
-              } else {
-                return `<li>${typeof item === 'string' ? item : item.title}</li>`;
-              }
-            }).join('');
+            ul.innerHTML = arr
+              .map((item) => {
+                if (group === "always") {
+                  // Down arrow to Sometimes
+                  return `<li class="summary-list-item" style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;">${item.title}<button onclick="moveToSometimes(${item.idx})" title='Move to Sometimes' class="summary-arrow-btn" aria-label='Move to Sometimes'>&#8595;</button></li>`;
+                } else if (group === "sometimes") {
+                  // Up arrow to Always, down arrow to Never
+                  return `<li class="summary-list-item" style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;">${
+                    typeof item === "string" ? item : item.title
+                  }<span><button onclick="moveToAlways(${
+                    typeof item === "object"
+                      ? item.idx
+                      : cards.findIndex((c) => c.title === item)
+                  })" title='Move to Always' class="summary-arrow-btn" aria-label='Move to Always'>&#8593;</button><button onclick="moveToNever(${
+                    typeof item === "object"
+                      ? item.idx
+                      : cards.findIndex((c) => c.title === item)
+                  })" title='Move to Never' class="summary-arrow-btn never" aria-label='Move to Never'>&#8595;</button></span></li>`;
+                } else if (group === "never") {
+                  // Up arrow to Sometimes
+                  return `<li class="summary-list-item" style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;">${
+                    typeof item === "string" ? item : item.title
+                  }<button onclick="moveToSometimes(${
+                    typeof item === "object"
+                      ? item.idx
+                      : cards.findIndex((c) => c.title === item)
+                  })" title='Move to Sometimes' class="summary-arrow-btn sometimes" aria-label='Move to Sometimes'>&#8593;</button></li>`;
+                } else {
+                  return `<li>${
+                    typeof item === "string" ? item : item.title
+                  }</li>`;
+                }
+              })
+              .join("");
           } else {
-            ul.innerHTML = '<li style="color:#bbb;font-style:italic;">None</li>';
+            ul.innerHTML = '<li class="summary-list-empty">None</li>';
           }
         };
-        setList('list-always', always, 'always');
-        setList('list-sometimes', sometimes, 'sometimes');
-        setList('list-never', never, 'never');
+        setList("list-always", always, "always");
+        setList("list-sometimes", sometimes, "sometimes");
+        setList("list-never", never, "never");
 
         // Highlight Always list background based on count
-        const alwaysUl = document.getElementById('list-always');
-        const analysisBtnContainer = document.getElementById('analysis-btn-container');
+        const alwaysUl = document.getElementById("list-always");
+        const analysisBtnContainer = document.getElementById(
+          "analysis-btn-container"
+        );
         if (alwaysUl) {
           if (always.length >= 5 && always.length <= 8) {
-            alwaysUl.style.background = '#d4f8d4'; // light green
-            if (analysisBtnContainer) analysisBtnContainer.style.display = '';
+            alwaysUl.classList.add("summary-list-green");
+            alwaysUl.classList.remove("summary-list-yellow");
+            if (analysisBtnContainer) analysisBtnContainer.style.display = "";
           } else {
-            alwaysUl.style.background = '#fffbe6'; // light yellow
-            if (analysisBtnContainer) analysisBtnContainer.style.display = 'none';
+            alwaysUl.classList.remove("summary-list-green");
+            alwaysUl.classList.add("summary-list-yellow");
+            if (analysisBtnContainer)
+              analysisBtnContainer.style.display = "none";
           }
         }
       }
 
-      window.moveToSometimes = function(idx) {
-        if (typeof idx === 'number') {
+      window.moveToSometimes = function (idx) {
+        if (typeof idx === "number") {
           if (selections[idx] === 0 || selections[idx] === 2) {
             selections[idx] = 1;
             renderCards();
@@ -279,21 +619,21 @@
           }
         }
       };
-      window.moveToAlways = function(idx) {
-        if (typeof idx === 'number' && selections[idx] === 1) {
+      window.moveToAlways = function (idx) {
+        if (typeof idx === "number" && selections[idx] === 1) {
           selections[idx] = 0;
           renderCards();
           saveSelections();
         }
       };
-      window.moveToNever = function(idx) {
-        if (typeof idx === 'number' && selections[idx] === 1) {
+      window.moveToNever = function (idx) {
+        if (typeof idx === "number" && selections[idx] === 1) {
           selections[idx] = 2;
           renderCards();
           saveSelections();
         }
       };
-      window.selectChoice = function(idx, val) {
+      window.selectChoice = function (idx, val) {
         // If the same value is clicked again, clear the selection
         if (selections[idx] === val) {
           selections[idx] = null;
@@ -303,9 +643,9 @@
         renderCards();
         saveSelections();
       };
-      fetch('thinking-talents-cards.json')
-        .then(response => response.json())
-        .then(data => {
+      fetch("thinking-talents-cards.json")
+        .then((response) => response.json())
+        .then((data) => {
           cards = data;
           renderCards();
         });
@@ -314,7 +654,7 @@
     <script>
       // Helper: get cognitive style for a card (from card.cognitive_style in JSON)
       function getCognitiveStyle(card) {
-        return card.cognitive_style || 'Unknown';
+        return card.cognitive_style || "Unknown";
       }
 
       // Render analysis table
@@ -325,80 +665,104 @@
           return window._talentsData[title] || null;
         }
         // Hide and collapse the talents grid, and inject analysis table in its place
-        const grid = document.getElementById('talents-grid');
+        const grid = document.getElementById("talents-grid");
         if (grid) {
           // Instead of hiding/collapsing the grid, just replace its content
-          grid.style.transition = '';
-          grid.style.overflow = '';
-          grid.style.maxHeight = '';
-          grid.style.opacity = '';
-          grid.style.pointerEvents = '';
+          grid.style.transition = "";
+          grid.style.overflow = "";
+          grid.style.maxHeight = "";
+          grid.style.opacity = "";
+          grid.style.pointerEvents = "";
         }
         // Get selected cards (ALWAYS group)
         const selected = selections
-          .map((sel, idx) => sel === 0 ? { ...cards[idx], idx } : null)
+          .map((sel, idx) => (sel === 0 ? { ...cards[idx], idx } : null))
           .filter(Boolean);
-  // Get all possible cognitive styles from the cards, excluding 'All'
-  const allStylesSet = new Set(cards.map(card => getCognitiveStyle(card)));
-  const allStyles = Array.from(allStylesSet).filter(s => s && s !== 'Unknown' && s !== 'All');
+        // Get all possible cognitive styles from the cards, excluding 'All'
+        const allStylesSet = new Set(
+          cards.map((card) => getCognitiveStyle(card))
+        );
+        const allStyles = Array.from(allStylesSet).filter(
+          (s) => s && s !== "Unknown" && s !== "All"
+        );
         // Count by cognitive style, excluding 'All'
         const styleCounts = {};
-        selected.forEach(card => {
+        selected.forEach((card) => {
           const style = getCognitiveStyle(card);
-          if (style !== 'All') {
+          if (style !== "All") {
             styleCounts[style] = (styleCounts[style] || 0) + 1;
           }
         });
         // Find blind spots (styles with no selections)
-        const blindSpots = allStyles.filter(style => !styleCounts[style]);
+        const blindSpots = allStyles.filter((style) => !styleCounts[style]);
         // Table rows with new columns
-        const rows = selected.map(card => {
-          const t = getTalentData(card.title);
-          const lights = t && t.lights_you_up ? t.lights_you_up.map(s => `<li>${s}</li>`).join('') : '';
-          const burns = t && t.burns_you_out ? t.burns_you_out.map(s => `<li>${s}</li>`).join('') : '';
-          return `<tr>
-            <td style='padding:0.4em 1em;border:1px solid #ccc;'>${card.title}</td>
-            <td style='padding:0.4em 1em;border:1px solid #ccc;'>${getCognitiveStyle(card)}</td>
+        const rows = selected
+          .map((card) => {
+            const t = getTalentData(card.title);
+            const lights =
+              t && t.lights_you_up
+                ? t.lights_you_up.map((s) => `<li>${s}</li>`).join("")
+                : "";
+            const burns =
+              t && t.burns_you_out
+                ? t.burns_you_out.map((s) => `<li>${s}</li>`).join("")
+                : "";
+            return `<tr>
+            <td style='padding:0.4em 1em;border:1px solid #ccc;'>${
+              card.title
+            }</td>
+            <td style='padding:0.4em 1em;border:1px solid #ccc;'>${getCognitiveStyle(
+              card
+            )}</td>
             <td style='padding:0.4em 1em;border:1px solid #ccc;'><ul style='margin:0.2em 0 0.2em 1.2em;padding:0;'>${lights}</ul></td>
             <td style='padding:0.4em 1em;border:1px solid #ccc;'><ul style='margin:0.2em 0 0.2em 1.2em;padding:0;'>${burns}</ul></td>
           </tr>`;
-        }).join('');
+          })
+          .join("");
         // Style count summary, sorted by count descending, excluding 'All'
         const styleSummary = Object.entries(styleCounts)
-          .filter(([style]) => style !== 'All')
+          .filter(([style]) => style !== "All")
           .sort((a, b) => b[1] - a[1])
-          .map(([style, count]) => `<li style='margin-bottom:0.2em;'><strong>${style}:</strong> ${count}</li>`)
-          .join('');
+          .map(
+            ([style, count]) =>
+              `<li style='margin-bottom:0.2em;'><strong>${style}:</strong> ${count}</li>`
+          )
+          .join("");
         // Blind spots summary
-        let blindSpotsSummary = '';
+        let blindSpotsSummary = "";
         if (blindSpots.length) {
           blindSpotsSummary = `
-            <div style='margin-bottom:1em;margin-top:1.2em;'>
+            <div class='analysis-blindspots-section'>
               <strong>Blind Spots (no selections):</strong>
-              <ul style='margin:0.5em 0 0 1.2em;padding:0;'>
-                ${blindSpots.map(style => `<li style='color:#b30000;'>${style}</li>`).join('')}
+              <ul class='analysis-blindspots-list'>
+                ${blindSpots
+                  .map(
+                    (style) =>
+                      `<li class='analysis-blindspot-item'>${style}</li>`
+                  )
+                  .join("")}
               </ul>
             </div>
-            <div style='background:#fffbe6;border:1px solid #ffe066;border-radius:8px;padding:1.1em 1.3em 1.1em 1.3em;margin-bottom:1.2em;'>
-              <h3 style='margin-top:0;margin-bottom:0.7em;font-size:1.1em;color:#b30000;'>Discovering Your Blind Spots</h3>
-              <p style='margin-bottom:0.7em;'>Equally important as knowing your mind’s sweet spots—the talents you have, the talents that are hidden, and how they combine—is recognizing your mind’s blind spots, which are the talents you lack. People worry and stress in the quadrants where they have blind spots. If you don’t have “feeling for others,” for example, you may worry about how people will react to you. If you don’t have “making order,” you worry because you have trouble organizing and prioritizing. If you don’t have “focusing,” you’re concerned about being easily distracted. We seem to know intuitively we are missing a natural ease and excellence of thinking in these areas, even if we fail to recognize it consciously. Conversely, you don’t worry in the domains where you have the necessary thinking talents, because you innately trust your capacity.</p>
-              <p style='margin-bottom:0.7em;'>Two common assumptions cause us to deny our blind spots. The first is the belief that we should all be competent at everything. The second is the belief that we should be able to think through and solve any issue independently. Both of these erroneous beliefs can lead to what I call “skilled mediocrity,” and they point to the inescapable fact that we need one another. Blind spots reveal where collaboration is necessary so you can give and get the support you need to produce excellence.</p>
-              <p style='margin-bottom:0;'>Looking back to the thinking-talents map, notice if you have any quadrants that are devoid of thinking talents. These are your blind spots. Also notice which thinking talents are missing, because they too may be blind spots in certain situations.</p>
+            <div class='analysis-blindspots-explainer'>
+              <h3>Discovering Your Blind Spots</h3>
+              <p>Equally important as knowing your mind’s sweet spots—the talents you have, the talents that are hidden, and how they combine—is recognizing your mind’s blind spots, which are the talents you lack. People worry and stress in the quadrants where they have blind spots. If you don’t have “feeling for others,” for example, you may worry about how people will react to you. If you don’t have “making order,” you worry because you have trouble organizing and prioritizing. If you don’t have “focusing,” you’re concerned about being easily distracted. We seem to know intuitively we are missing a natural ease and excellence of thinking in these areas, even if we fail to recognize it consciously. Conversely, you don’t worry in the domains where you have the necessary thinking talents, because you innately trust your capacity.</p>
+              <p>Two common assumptions cause us to deny our blind spots. The first is the belief that we should all be competent at everything. The second is the belief that we should be able to think through and solve any issue independently. Both of these erroneous beliefs can lead to what I call “skilled mediocrity,” and they point to the inescapable fact that we need one another. Blind spots reveal where collaboration is necessary so you can give and get the support you need to produce excellence.</p>
+              <p>Looking back to the thinking-talents map, notice if you have any quadrants that are devoid of thinking talents. These are your blind spots. Also notice which thinking talents are missing, because they too may be blind spots in certain situations.</p>
             </div>
           `;
         }
         // Inject analysis table into the talents-grid container
         if (grid) {
           grid.innerHTML = `
-            <div id='analysis-table-container' style='width:100%;margin:0 auto 2em auto;'>
+            <div id='analysis-table-container' class='analysis-table-container'>
               <h2 style='text-align:center;margin-bottom:1em;color:#0077b6;'>Analysis of Your Selections</h2>
-              <table style='width:100%;border-collapse:collapse;margin-bottom:1.2em;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px #0001;'>
+              <table class='analysis-table'>
                 <thead>
-                  <tr style='background:#f4f8fb;'>
-                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>🎴 Talent</th>
-                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>🧠 Cognitive Style</th>
-                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>✨ What lights you up</th>
-                    <th style='padding:0.5em 1em;border:1px solid #ccc;text-align:left;'>🔥 What burns you out</th>
+                  <tr>
+                    <th>🎴 Talent</th>
+                    <th>🧠 Cognitive Style</th>
+                    <th>✨ What lights you up</th>
+                    <th>🔥 What burns you out</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -407,7 +771,7 @@
               </table>
               <div style='margin-bottom:1em;'>
                 <strong>Key:</strong>
-                <ul style='margin:0.5em 0 0 1.2em;padding:0;font-style:italic;'>
+                <ul class='analysis-key-list'>
                   <li style='color:#0077b6;'>Analytic - Concerned with data, facts, numbers, being "logical" and rational</li>
                   <li style='color:#0077b6;'>Innovative - Concerned with the future, newness, possibilities, strategy, "big picture"</li>
                   <li style='color:#0077b6;'>Procedural - Concerned with process, operations, logistics, tactics</li>
@@ -416,7 +780,7 @@
               </div>
               <div style='margin-bottom:1em;'>
                 <strong>Number of selections per cognitive style:</strong>
-                <ul style='margin:0.5em 0 0 1.2em;padding:0;'>
+                <ul class='analysis-style-summary'>
                   ${styleSummary}
                 </ul>
               </div>
@@ -427,18 +791,18 @@
       }
 
       // Add click handler for Analysis button
-      document.addEventListener('DOMContentLoaded', function() {
-        const btn = document.getElementById('analysis-btn');
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("analysis-btn");
         if (btn) {
           btn.onclick = renderAnalysisTable;
         }
 
         // Reset button handler
-        const resetBtn = document.getElementById('reset-btn');
+        const resetBtn = document.getElementById("reset-btn");
         if (resetBtn) {
-          resetBtn.onclick = function() {
-            if (confirm('Are you sure you want to reset your selections?')) {
-              localStorage.removeItem('thinkingTalentsSelections');
+          resetBtn.onclick = function () {
+            if (confirm("Are you sure you want to reset your selections?")) {
+              localStorage.removeItem("thinkingTalentsSelections");
               location.reload();
             }
           };
