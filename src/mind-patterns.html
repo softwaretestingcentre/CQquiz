@@ -8,6 +8,14 @@
       body {
         font-family: Arial, sans-serif;
         margin: 2em;
+        background: #000;
+        background-image: url("data:image/svg+xml;utf8,<svg width='1920' height='1080' xmlns='http://www.w3.org/2000/svg'><defs><radialGradient id='g1' cx='50%' cy='0%' r='100%' fx='50%' fy='0%'><stop offset='0%' stop-color='yellow' stop-opacity='0.7'/><stop offset='80%' stop-color='gold' stop-opacity='0.18'/><stop offset='100%' stop-color='black' stop-opacity='0.0'/></radialGradient><radialGradient id='g2' cx='80%' cy='0%' r='100%' fx='80%' fy='0%'><stop offset='0%' stop-color='lemonchiffon' stop-opacity='0.6'/><stop offset='80%' stop-color='khaki' stop-opacity='0.13'/><stop offset='100%' stop-color='black' stop-opacity='0.0'/></radialGradient><radialGradient id='g3' cx='20%' cy='0%' r='100%' fx='20%' fy='0%'><stop offset='0%' stop-color='gold' stop-opacity='0.5'/><stop offset='80%' stop-color='yellow' stop-opacity='0.12'/><stop offset='100%' stop-color='black' stop-opacity='0.0'/></radialGradient></defs><ellipse cx='960' cy='0' rx='340' ry='700' fill='url(%23g1)'/><ellipse cx='1530' cy='0' rx='260' ry='600' fill='url(%23g2)'/><ellipse cx='390' cy='0' rx='220' ry='500' fill='url(%23g3)'/></svg>");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+      h1, h2, h3, tbody {
+        color: white;
       }
       .quiz-step {
         margin-bottom: 2em;
@@ -114,11 +122,68 @@
     </style>
   </head>
   <body>
-    <nav style="width:90vw;min-width:90%;background:#fffc66;border-bottom:1.5px solid #ffe066;padding:0.5em 0 0.5em 0.5em;position:relative;z-index:10;box-shadow:0 1px 4px #0001;display:flex;align-items:center;gap:1.5em;">
+    <nav
+      style="
+        width: 90vw;
+        min-width: 90%;
+        background: #fffc66;
+        border-bottom: 1.5px solid #ffe066;
+        padding: 0.5em 0 0.5em 0.5em;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 1px 4px #0001;
+        display: flex;
+        align-items: center;
+        gap: 1.5em;
+      "
+    >
       <strong>COLLABORATIVE INTELLIGENCE</strong>
-      <a href="mind-patterns.html" style="color:#111;text-decoration:none;font-weight:bold;font-size:1.08em;padding:0.2em 0.7em;border-radius:6px;transition:background 0.15s;background:#fffb00;">Mind Patterns</a>
-      <a href="thinking-talents.html" style="color:#111;text-decoration:none;font-weight:bold;font-size:1.08em;padding:0.2em 0.7em;border-radius:6px;transition:background 0.15s;">Thinking Talents</a>
-      <button id="reset-btn" style="margin-left:auto;margin-right:1em;background:#fffbe6;color:#b30000;border:1.5px solid #ffe066;border-radius:7px;padding:0.4em 1.2em;font-size:1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 6px #0001;transition:background 0.15s;">Reset</button>
+      <a
+        href="mind-patterns.html"
+        style="
+          color: #111;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 1.08em;
+          padding: 0.2em 0.7em;
+          border-radius: 6px;
+          transition: background 0.15s;
+          background: #fffb00;
+        "
+        >Mind Patterns</a
+      >
+      <a
+        href="thinking-talents.html"
+        style="
+          color: #111;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 1.08em;
+          padding: 0.2em 0.7em;
+          border-radius: 6px;
+          transition: background 0.15s;
+        "
+        >Thinking Talents</a
+      >
+      <button
+        id="reset-btn"
+        style="
+          margin-left: auto;
+          margin-right: 1em;
+          background: #fffbe6;
+          color: #b30000;
+          border: 1.5px solid #ffe066;
+          border-radius: 7px;
+          padding: 0.4em 1.2em;
+          font-size: 1em;
+          font-weight: bold;
+          cursor: pointer;
+          box-shadow: 0 2px 6px #0001;
+          transition: background 0.15s;
+        "
+      >
+        Reset
+      </button>
     </nav>
     <h1>Mind Pattern Quiz</h1>
     <div id="quiz-container">
@@ -157,13 +222,16 @@
       // Load selections from localStorage if present
       function loadSelections() {
         try {
-          const saved = localStorage.getItem('mindPatternsSelections');
+          const saved = localStorage.getItem("mindPatternsSelections");
           if (saved) {
             const obj = JSON.parse(saved);
-            if (obj && typeof obj === 'object') {
-              if ('selectedOption1' in obj) selectedOption1 = obj.selectedOption1;
-              if ('selectedOption2' in obj) selectedOption2 = obj.selectedOption2;
-              if ('selectedOption3' in obj) selectedOption3 = obj.selectedOption3;
+            if (obj && typeof obj === "object") {
+              if ("selectedOption1" in obj)
+                selectedOption1 = obj.selectedOption1;
+              if ("selectedOption2" in obj)
+                selectedOption2 = obj.selectedOption2;
+              if ("selectedOption3" in obj)
+                selectedOption3 = obj.selectedOption3;
             }
           }
         } catch (e) {}
@@ -172,11 +240,14 @@
       // Save selections to localStorage
       function saveSelections() {
         try {
-          localStorage.setItem('mindPatternsSelections', JSON.stringify({
-            selectedOption1,
-            selectedOption2,
-            selectedOption3
-          }));
+          localStorage.setItem(
+            "mindPatternsSelections",
+            JSON.stringify({
+              selectedOption1,
+              selectedOption2,
+              selectedOption3,
+            })
+          );
         } catch (e) {}
       }
 
@@ -431,18 +502,18 @@
         html += `</table>`;
         html += `<div class='long-description'>${mindPatternStepDescriptions[mindPattern].longDescription}</div>`;
 
-        html += `<h2>${mindPattern} Attributes</h2>`
+        html += `<h2>${mindPattern} Attributes</h2>`;
         html += `<table style="border-collapse:collapse;width:auto;font-weight:bold;padding:0.3em 1em;border:1px solid #bbb;">`;
-        html += `<tr><td style='background:#f5f5f5;'>Easiest Way to Learn</td><td>${mindPatternStepDescriptions[mindPattern].learning}</td></tr>`;
-        html += `<tr><td style='background:#f5f5f5;'>Easiest Way to Express</td><td>${mindPatternStepDescriptions[mindPattern].expressing}</td></tr>`;
-        html += `<tr><td style='background:#f5f5f5;'>Language Attributes</td><td>${mindPatternStepDescriptions[mindPattern].language}</td></tr>`;
-        html += `<tr><td style='background:#f5f5f5;'>Visual Attributes</td><td>${mindPatternStepDescriptions[mindPattern].visual}</td></tr>`;
-        html += `<tr><td style='background:#f5f5f5;'>Physical Attributes</td><td>${mindPatternStepDescriptions[mindPattern].physical}</td></tr>`;
-        html += `<tr><td style='background:#f5f5f5;'>Natural Traits</td>
+        html += `<tr><td>Easiest Way to Learn</td><td>${mindPatternStepDescriptions[mindPattern].learning}</td></tr>`;
+        html += `<tr><td>Easiest Way to Express</td><td>${mindPatternStepDescriptions[mindPattern].expressing}</td></tr>`;
+        html += `<tr><td>Language Attributes</td><td>${mindPatternStepDescriptions[mindPattern].language}</td></tr>`;
+        html += `<tr><td>Visual Attributes</td><td>${mindPatternStepDescriptions[mindPattern].visual}</td></tr>`;
+        html += `<tr><td>Physical Attributes</td><td>${mindPatternStepDescriptions[mindPattern].physical}</td></tr>`;
+        html += `<tr><td>Natural Traits</td>
             <td style='vertical-align:top;padding-top:0;text-align:left;padding-inline-start: 40px;'>${mindPatternStepDescriptions[mindPattern].traits}</td></tr>`;
-        html += `<tr><td style='background:#f5f5f5;'>Frustrations</td>
+        html += `<tr><td>Frustrations</td>
               <td style='vertical-align:top;padding-top:0;text-align:left;padding-inline-start: 40px;'>${mindPatternStepDescriptions[mindPattern].frustrations}</td></tr>`;
-        html += `<tr><td style='background:#f5f5f5;'>Spaces Out</td>
+        html += `<tr><td>Spaces Out</td>
                 <td style='vertical-align:top;padding-top:0;text-align:left;padding-inline-start: 40px;'>${mindPatternStepDescriptions[mindPattern].spacing_out}</td></tr>`;
         html += `</table>`;
 
@@ -466,10 +537,11 @@
               <td style='border:1px solid #222;padding:0.7em 1.2em;'>${breakdown}</td>
               <td style='border:1px solid #222;padding:0.7em 1.2em;'>${mindPatternStepDescriptions[mindPattern].adjustment[index]}</td>
             </tr>`;
-          });
+          }
+        );
         html += `</tbody>`;
         html += `</table>`;
-        
+
         html += `<h2>Coping with ${mindPattern} Challenges</h2>`;
         html += `<table><thead>
             <tr style='font-weight:bold;'>
@@ -493,12 +565,12 @@
       // Initial render now handled after dynamic import
 
       // Add reset button handler
-      document.addEventListener('DOMContentLoaded', function() {
-        const resetBtn = document.getElementById('reset-btn');
+      document.addEventListener("DOMContentLoaded", function () {
+        const resetBtn = document.getElementById("reset-btn");
         if (resetBtn) {
-          resetBtn.onclick = function() {
-            if (confirm('Are you sure you want to reset your selections?')) {
-              localStorage.removeItem('mindPatternsSelections');
+          resetBtn.onclick = function () {
+            if (confirm("Are you sure you want to reset your selections?")) {
+              localStorage.removeItem("mindPatternsSelections");
               location.reload();
             }
           };

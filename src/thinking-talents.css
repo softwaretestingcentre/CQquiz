@@ -1,11 +1,13 @@
 /* Chapter Summary Table Styles */
+/* Main container readable style */
 .chapter-summary-section {
   margin: 2.5em auto 2em auto;
   max-width: 900px;
-  background: #f8fafc;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px #0001;
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px #0003;
   padding: 2em 1.5em 2em 1.5em;
+  backdrop-filter: blur(8px);
 }
 .chapter-summary-heading {
   text-align: center;
@@ -44,8 +46,8 @@
 /* Thinking Talents Quiz Styles */
 
 .nav-bar {
-  width: 90vw;
-  min-width: 90%;
+  width: 95vw;
+  min-width: 95%;
   background: #fffc66;
   border-bottom: 1.5px solid #ffe066;
   padding: 0.5em 0 0.5em 0.5em;
@@ -82,17 +84,19 @@
   box-shadow: 0 2px 6px #0001;
   transition: background 0.15s;
 }
+/* Main container readable style */
 .summary-aside {
   min-width: 260px;
   max-width: 320px;
   margin-left: 2.5em;
   padding: 1.2em 1.2em 1.2em 1.2em;
-  background: #f4f8fb;
+  background: rgba(255,255,255,0.85);
   border-radius: 16px;
   border: 1.5px solid #cce5ff;
-  box-shadow: 0 2px 8px #0001;
+  box-shadow: 0 4px 24px #0003;
   top: 2em;
   position: sticky;
+  backdrop-filter: blur(8px);
 }
 .summary-heading {
   font-size: 1.2em;
@@ -145,13 +149,25 @@
 .summary-list-yellow {
   background: #fffbe6;
 }
+/* Main container readable style */
+.intro {
+  background: rgba(255,255,255,0.85);
+  border: 1.2px solid #cce5ff;
+  border-radius: 16px;
+  padding: 1.2em 1.2em 1.2em 1.2em;
+  margin: 2em;
+  box-shadow: 0 4px 24px #0003;
+  backdrop-filter: blur(8px);
+}
 .shadow {
-  background: #888;
-  border: 1.2px solid #222;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.671);
+  border: 1.2px solid #cce5ff;
+  border-radius: 16px;
   padding: 1.2em 1.2em 1.2em 1.2em;
   margin: 2em;
   font-size: small;
+  box-shadow: 0 4px 24px #0003;
+  backdrop-filter: blur(8px);
 }
 .talent-shadow-bar {
   width: 100%;
@@ -185,7 +201,11 @@
 body {
   font-family: Arial, sans-serif;
   margin: 2em;
-  background: #f8f8f8;
+  background: #000;
+  background-image: url("data:image/svg+xml;utf8,<svg width='1920' height='1080' xmlns='http://www.w3.org/2000/svg'><defs><radialGradient id='g1' cx='50%' cy='0%' r='100%' fx='50%' fy='0%'><stop offset='0%' stop-color='yellow' stop-opacity='0.7'/><stop offset='80%' stop-color='gold' stop-opacity='0.18'/><stop offset='100%' stop-color='black' stop-opacity='0.0'/></radialGradient><radialGradient id='g2' cx='80%' cy='0%' r='100%' fx='80%' fy='0%'><stop offset='0%' stop-color='lemonchiffon' stop-opacity='0.6'/><stop offset='80%' stop-color='khaki' stop-opacity='0.13'/><stop offset='100%' stop-color='black' stop-opacity='0.0'/></radialGradient><radialGradient id='g3' cx='20%' cy='0%' r='100%' fx='20%' fy='0%'><stop offset='0%' stop-color='gold' stop-opacity='0.5'/><stop offset='80%' stop-color='yellow' stop-opacity='0.12'/><stop offset='100%' stop-color='black' stop-opacity='0.0'/></radialGradient></defs><ellipse cx='960' cy='0' rx='340' ry='700' fill='url(%23g1)'/><ellipse cx='1530' cy='0' rx='260' ry='600' fill='url(%23g2)'/><ellipse cx='390' cy='0' rx='220' ry='500' fill='url(%23g3)'/></svg>");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 h1 {
   text-align: center;
@@ -281,9 +301,15 @@ h1 {
   margin-top: 2em;
 }
 /* Analysis Table Styles */
+/* Main container readable style */
 .analysis-table-container {
   width: 100%;
   margin: 0 auto 2em auto;
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px #0003;
+  padding: 2em 1.5em 2em 1.5em;
+  backdrop-filter: blur(8px);
 }
 .analysis-table {
   width: 100%;
@@ -326,12 +352,15 @@ h1 {
   margin-bottom: 1em;
   margin-top: 1.2em;
 }
+/* Main container readable style */
 .analysis-blindspots-explainer {
-  background: #fffbe6;
+  background: rgba(255,255,255,0.85);
   border: 1px solid #ffe066;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 1.1em 1.3em 1.1em 1.3em;
   margin-bottom: 1.2em;
+  box-shadow: 0 4px 24px #0003;
+  backdrop-filter: blur(8px);
 }
 .analysis-blindspots-explainer h3 {
   margin-top: 0;
